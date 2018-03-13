@@ -24,7 +24,7 @@ import com.example.hp.stickpick.fragments.MCA5;
 import com.example.hp.stickpick.fragments.MCA6;
 import com.example.hp.stickpick.utils.HelperActivity;
 
-public class AttendanceMCA extends AppCompatActivity {
+public class AttendanceActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;

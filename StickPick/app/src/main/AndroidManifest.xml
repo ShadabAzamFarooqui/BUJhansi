@@ -134,7 +134,7 @@
         </service>
 
         <activity
-            android:name=".activity.AttendanceMCA"
+            android:name=".activity.AttendanceActivity"
             android:label="@string/title_activity_attendance_mc"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
