@@ -1,6 +1,7 @@
 package com.example.hp.stickpick.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -267,7 +272,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!HomeActivity.boolCourseSem) {
                     ShowAllRecordsActivity.this.i = i;
-                    final CharSequence[] items = {"Call",/* "Sms",*/ "Email", "Remove"};
+                    final CharSequence[] items = {"Call","Sms", "Email", "Remove"};
                     ShowAllRecordsActivity.this.i = i;
                     AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
                     builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -288,7 +293,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                 }
                                 ShowAllRecordsActivity.this.startActivity(callIntent);
 
-                            }/* else if (item == 1) {
+                            } else if (item == 1) {
 
                                 final Dialog openDialog = new Dialog(ShowAllRecordsActivity.this);
                                 openDialog.setContentView(R.layout.message_dailog);
@@ -299,20 +304,28 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                 msgBtn.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        if (msgEdt.getText().toString().trim().isEmpty()){
+                                            Toast toast = Toast.makeText(getApplicationContext(),
+                                                    "Please write something", Toast.LENGTH_SHORT);
+                                            toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            toast.show();
+
+                                            return;
+                                        }
                                         SmsManager smsManager = SmsManager.getDefault();
-                                        smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhansi=" + msgEdt.getText().toString(), null, null);
+                                        smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhansi=\n" + msgEdt.getText().toString(), null, null);
                                         openDialog.dismiss();
                                     }
                                 });
                                 openDialog.show();
 
 
-                            } */ else if (item == 1) {
+                            }  else if (item == 2) {
                                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                                         "mailto", listBean.get(position).getEmail().toString(), null));
-                                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Suggestion/Query");
+                                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");
                                 startActivity(Intent.createChooser(emailIntent, null));
-                            } else if (item == 2) {
+                            } else if (item == 3) {
                                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ShowAllRecordsActivity.this);
                                 alertDialog.setMessage("Are you sure?");
                                 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -361,7 +374,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                 } else {
                     {
                         ShowAllRecordsActivity.this.i = i;
-                        final CharSequence[] items = {"Call", "Email", "Remove"};
+                        final CharSequence[] items = {"Call","Sms", "Email", "Remove"};
                         ShowAllRecordsActivity.this.i = i;
                         AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
                         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -382,8 +395,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                     }
                                     ShowAllRecordsActivity.this.startActivity(callIntent);
 
-                                } /*else if (item == 1) {
-
+                                } else if (item == 1) {
                                     final Dialog openDialog = new Dialog(ShowAllRecordsActivity.this);
                                     openDialog.setContentView(R.layout.message_dailog);
                                     openDialog.setTitle("Enter message");
@@ -393,20 +405,28 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                     msgBtn.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
+                                            if (msgEdt.getText().toString().trim().isEmpty()){
+                                                Toast toast = Toast.makeText(getApplicationContext(),
+                                                        "Please write something", Toast.LENGTH_SHORT);
+                                                toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                                toast.show();
+
+                                                return;
+                                            }
                                             SmsManager smsManager = SmsManager.getDefault();
-                                            smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhnsi=" + msgEdt.getText().toString(), null, null);
+                                            smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhnsi=\n" + msgEdt.getText().toString(), null, null);
                                             openDialog.dismiss();
                                         }
                                     });
                                     openDialog.show();
 
 
-                                } */ else if (item == 1) {
+                                }  else if (item == 2) {
                                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                                             "mailto", listCourseSemester.get(ShowAllRecordsActivity.this.i).getEmail().toString(), null));
-                                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Suggestion/Query");
+                                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");
                                     startActivity(Intent.createChooser(emailIntent, null));
-                                } else if (item == 2) {
+                                } else if (item == 3) {
                                     android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ShowAllRecordsActivity.this);
                                     alertDialog.setMessage("Are you sure?");
                                     alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -555,7 +575,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             holder.courseSem.setText(listBean.get(position).getCourse() + " " + listBean.get(position).getSemester());
             holder.linearEmail.setVisibility(View.VISIBLE);
             holder.linearEmail.setVisibility(View.VISIBLE);
-            holder.linearPass.setVisibility(View.VISIBLE);
+            holder.linearPass.setVisibility(View.GONE);
 
             if (listBean.get(position).getImage().length() > 0) {
                 holder.textViewimageDetail.setVisibility(View.GONE);
