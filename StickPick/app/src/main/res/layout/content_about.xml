@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.hp.stickpick.activity.AboutActivity"
+    tools:showIn="@layout/activity_about">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:maxLines="20"
+            android:paddingBottom="5dp"
+            android:text="@string/large_text" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            style="@style/Base.AlertDialog.AppCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/black"
+            android:gravity="center"
+            android:text="more..."
+            android:textColor="@color/white" />
+
+        <!--<LinearLayout
+            android:id="@+id/showDeveloper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/selector"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:minHeight="50dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/contactusicon" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="left|center_vertical"
+                android:singleLine="true"
+                android:text="Contact Us:"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/textColorDefault"
+                android:textSize="@dimen/textsizeNormal"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="20dp"
+            android:id="@+id/developerOption">
+
+
+         com.example.hp.stickpick.activity.CircleImageViewView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/shadab2"
+                android:layout_weight="1"
+                android:id="@+id/contact_img"
+                android:visibility="visible" />
+            <ImageView
+                android:id="@+id/callUsImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/call_icon_support" />
+            <ImageView
+                android:id="@+id/emailUsImage"
+                android:layout_width="40dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:src="@drawable/anim_message_icon" />
+            <ImageView
+                android:id="@+id/connectFacebookImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/facebook_icon_support" />
+
+        </LinearLayout>-->
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

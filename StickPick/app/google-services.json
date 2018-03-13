@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "524310285855",
+    "firebase_url": "https://neat-cycling-169321.firebaseio.com",
+    "project_id": "neat-cycling-169321",
+    "storage_bucket": "neat-cycling-169321.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524310285855:android:6c401bcfa8441ad5",
+        "android_client_info": {
+          "package_name": "com.example.hp.stickpick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524310285855-e93fakg1050mri6gtn0p2qkpm3nu3a82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hp.stickpick",
+            "certificate_hash": "a9d2b9d4afffa1177e4792b35cecd6c40c2fc255"
+          }
+        },
+        {
+          "client_id": "524310285855-308eqkoj80at901hhpgcsvgc96upsuro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hp.stickpick",
+            "certificate_hash": "af8363d4da47604bad85b61e04551814c985631a"
+          }
+        },
+        {
+          "client_id": "524310285855-v3oqu09ff86f9inmntrpn7j3ub34j30n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC7TGGIGId2J8odsbFTvl2id_5uAvhBxc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524310285855-v3oqu09ff86f9inmntrpn7j3ub34j30n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

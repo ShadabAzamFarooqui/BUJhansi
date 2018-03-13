@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/light_Green"
+        android:orientation="vertical">
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/btn_background"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:paddingLeft="30dp"
+                android:text="Enter Notice Here"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <com.example.hp.stickpick.utils.CircleImageView
+                android:id="@+id/enterImageNotice"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:src="@drawable/camera_button_signup" />
+
+        </LinearLayout>
+
+
+
+        <EditText
+            android:id="@+id/notice"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/light_Green"
+            android:gravity="left|top"
+            android:hint="Type notice here"
+            android:inputType="textMultiLine|textCapSentences"
+            android:padding="5dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/grey"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/save"
+            style="@style/Base.AlertDialog.AppCompat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Save  Notice"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsizeBig"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</ScrollView>

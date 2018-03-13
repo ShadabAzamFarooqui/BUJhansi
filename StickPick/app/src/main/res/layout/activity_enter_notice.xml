@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homescreenimage"
+    android:orientation="vertical"
+    tools:context="com.example.hp.stickpick.activity.NoticeEnterActivity">
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Enter Notice Here"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/notice"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="15dp"
+        android:background="@color/white"
+        android:gravity="left|top"
+        android:hint="Type message here"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:inputType="textMultiLine|textCapSentences"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/grey"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/save"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textSize="@dimen/textsizeBig"
+        style="@style/Base.AlertDialog.AppCompat"
+        android:textStyle="bold"
+        android:text="Save  Notice"
+        android:textColor="@color/white" />
+    <!--style="?metaButtonBarButtonStyle"-->
+
+
+</LinearLayout>

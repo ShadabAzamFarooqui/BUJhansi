@@ -1,0 +1,293 @@
+<resources>
+    <string name="app_name">B.U. Jhansi</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_showAllRecord">Show All Records</string>
+    <string name="action_deleteAllRec">Delete All Records</string>
+    <string name="action_clearNotice">Clear Notice Board</string>
+    <string name="title_activity_stack_overflow">StackOverflowActivity</string>
+    <string name="title_activity_video">VideoActivity</string>
+    <string name="large_text">
+     I. INTRODUCTION \n
+Changes in Information Technology (IT) allow schools to
+utilize databases and applications thus, making the accessing
+of records centralized. One of the changes that came about is
+the online-based applications. These applications are an
+improvisation to the traditional- transaction processing
+systems. Thus, most universities switch to the online system
+because of its efficiency to acquire, process, store and retrieve
+information from the Internet.\n
+The Student Information System (SIS) would be a new way of
+record management and transaction processing that would
+achieve efficiency on processing student information. It
+would be a great help to the administrative personnel,
+academic personnel or stakeholders and students in updating,
+retrieving and generating student data.\n
+The developed android application will be used by teachers,
+students, parents and the administrator who maintains the
+system. The students will use the application to enter their
+personal and academic details, post their queries regarding a
+particular subject on the respective discussion forum and for
+viewing notices broadcasted by the teachers/admin. The
+teachers can verify the details entered by the students and
+after the placements, the teachers can enter the placement
+details for each student. They can broadcast the changes in
+schedules or any new upcoming events to the students. Also,
+the students as well as their parents will be informed about
+the attendance percentage periodically through the
+application. The administrator has the authority of
+modifying the student details, adding or deleting teachers as
+and when they get admitted to the college or leave the
+college.\n
+Thus, this application will automate the manual student
+information maintenance process in colleges. It will also
+reduce the amount of paperwork done and time invested in
+manual process by the teachers.
+II. DRAWBACKS OF EXISTING SYSTEM\n
+An Android application similar to Student Information
+System named VIT-Live already exists in the market. VIT
+(Vidyalankar Institute of Technology) uses VidyalankarLive
+(VLive) which is an academic oriented social networking
+website created based on the concept of community portal. It
+is an internal portal utilized for interaction between students,
+faculty and other staff members and remain abreast on
+various on-going events.\n
+VIT-live app provides a lot of functionalities. However, it has
+certain drawbacks too:\n
+• The content is not well organized and hence difficult to
+understand.\n
+• A lot of searching is required.\n
+• Notifications do not pop up, every time student has to
+search through every event to know about new
+announcements.\n
+
+
+Department of Information technology\n
+Bundelkhand University Jhansi\n
+• Students from one class are able to view and edit forums
+of some other class, which can result in ambiguity of
+displayed information and create confusion.\n
+Overcoming of drawbacks in the proposed system:
+• Content will be well organized. Each category of user
+will have a different interface.\n
+• The searching overhead will be drastically reduced as a
+result of maintaining a separate discussion forum per
+subject for every class.\n
+• Only the notifications relevant to a particular user will
+be delivered to the user.\n
+III. PROPOSED SYSTEM\n
+The objective of the design of a new system is to automate the
+current procedure of managing and controlling the
+information about the student details and to reduce the
+overhead of managing paper documents for every
+announcement and notices being made. The proposed system
+will keep the information on a central server while allowing
+users to access that information from their own Smartphone
+through the installed android application. There will be an
+optimized database on the server and an improved user
+interface on each client machine i.e. on the SIS app installed
+on the user Smartphone.\n
+The developed application will be used by students, teachers,
+parents and the administrator. The functionalities of the
+proposed system can be divided into five well defined
+modules:\n
+REGISTRATION AND LOGIN:\n Given that the user has
+downloaded the application, then the user should be able to
+register through the application by providing the details
+required for registration. Starting from 2nd year i.e. 3rd
+semester, it is required that user should register for the
+application at the beginning of every semester. After
+registration the user can login into the system by providing
+the user id and password.\n
+STUDENT DETAILS: It includes three entities-\n
+• Personal details\n
+• Academic details\n
+• Placement details\n
+The students are expected to enter their personal details
+which will then be verified by the teachers. The personal
+details include residential address, email address, contact
+details (students as well as parents contact details) etc. The
+teachers are expected to enter the academic and placement
+details. Academic details include students CGPA. Placement
+details can only be entered in the final year and includes the
+company name where the student is placed and his pay
+package or if the student has opted for higher studies then the
+corresponding details will be entered.\n
+DISCUSSION FORUM: There will be a discussion forum
+for every subject in a semester for every class. In this
+discussion forum, the respective subject teachers can upload
+notes, respond to student queries. The student can put forth
+their queries and at the same time upload any notes.
+NOTICE BOARD/EVENT NOTIFICATION: \nNotices
+can be posted by teachers from their respective login and can
+be viewed on a notice board section of the application with
+title for a notice associated with it. The notices for a
+particular class will be broadcasted to that class only.
+ATTENDANCE: Subject teachers for each semester are
+required to enter the attendance details of students. The
+system should be able to generate attendance reports (for
+lectures and practicals) for individual student for each
+subject. These reports will be sent to the student as well as his
+parents periodically. The teacher can also view the
+attendance record of students during a particular interval. If
+the attendance of some student falls below the threshold
+value, then the particular student should be notified
+regarding the same.\n
+REPORT GENERATION: It includes generation of
+attendance reports for lectures as well as practicals for
+individual student for each subject. Other reports such as
+academic details record etc. can also be generated. These
+reports can also be sent to the student as well as his parents if
+required.\n
+
+
+
+    </string>
+    <string name="SixSense">
+        \'SixthSense\' is a wearable gestural interface that augments the physical world around us with digital information and lets us use natural hand gestures to interact with that information.
+
+We\'ve evolved over millions of years to sense the world around us. When we encounter something, someone or some place, we use our five natural senses to perceive information about it; that information helps us make decisions and chose the right actions to take. But arguably the most useful information that can help us make the right decision is not naturally perceivable with our five senses, namely the data, information and knowledge that mankind has accumulated about everything and which is increasingly all available online. Although the miniaturization of computing devices allows us to carry computers in our pockets, keeping us continually connected to the digital world, there is no link between our digital devices and our interactions with the physical world. Information is confined traditionally on paper or digitally on a screen. SixthSense bridges this gap, bringing intangible, digital information out into the tangible world, and allowing us to interact with this information via natural hand gestures. ‘SixthSense’ frees information from its confines by seamlessly integrating it with reality, and thus making the entire world your computer.
+
+The SixthSense prototype is comprised of a pocket projector, a mirror and a camera. The hardware components are coupled in a pendant like mobile wearable device. Both the projector and the camera are connected to the mobile computing device in the user’s pocket. The projector projects visual information enabling surfaces, walls and physical objects around us to be used as interfaces; while the camera recognizes and tracks user\'s hand gestures and physical objects using computer-vision based techniques. The software program processes the video stream data captured by the camera and tracks the locations of the colored markers (visual tracking fiducials) at the tip of the user’s fingers using simple computer-vision techniques. The movements and arrangements of these fiducials are interpreted into gestures that act as interaction instructions for the projected application interfaces. The maximum number of tracked fingers is only constrained by the number of unique fiducials, thus SixthSense also supports multi-touch and multi-user interaction.
+
+The SixthSense prototype implements several applications that demonstrate the usefulness, viability and flexibility of the system. The map application lets the user navigate a map displayed on a nearby surface using hand gestures, similar to gestures supported by Multi-Touch based systems, letting the user zoom in, zoom out or pan using intuitive hand movements. The drawing application lets the user draw on any surface by tracking the fingertip movements of the user’s index finger. SixthSense also recognizes user’s freehand gestures (postures). For example, the SixthSense system implements a gestural camera that takes photos of the scene the user is looking at by detecting the ‘framing’ gesture. The user can stop by any surface or wall and flick through the photos he/she has taken. SixthSense also lets the user draw icons or symbols in the air using the movement of the index finger and recognizes those symbols as interaction instructions. For example, drawing a magnifying glass symbol takes the user to the map application or drawing an ‘@’ symbol lets the user check his mail. The SixthSense system also augments physical objects the user is interacting with by projecting more information about these objects projected on them. For example, a newspaper can show live video news or dynamic information can be provided on a regular piece of paper. The gesture of drawing a circle on the user’s wrist projects an analog watch.
+
+    </string>
+    <string name="iOS">
+        Android is a mobile operating system.
+    </string>
+
+
+    <string name="hacking">
+    In computer security, a hacker is someone who focuses on security mechanisms of computer and network systems. While including those who endeavor to strengthen such mechanisms, it is more often used by the mass media and popular culture to refer to those who seek access despite these security measures. That is, the media portrays the \'hacker\' as a villain. Nevertheless, parts of the subculture see their aim in correcting security problems and use the word in a positive sense. White hat is the name given to ethical computer hackers, who utilize hacking in a helpful way. White hats are becoming a necessary part of the information security field.[7] They operate under a code, which acknowledges that breaking into other people\'s computers is bad, but that discovering and exploiting security mechanisms and breaking into computers is still an interesting activity that can be done ethically and legally. Accordingly, the term bears strong connotations that are favorable or pejorative, depending on the context.
+
+The subculture around such hackers is termed network hacker subculture, hacker scene or computer underground. It initially developed in the context of phreaking during the 1960s and the microcomputer BBS scene of the 1980s. It is implicated with 2600: The Hacker Quarterly and the alt.2600 newsgroup.
+
+In 1980, an article in the August issue of Psychology Today (with commentary by Philip Zimbardo) used the term "hacker" in its title: "The Hacker Papers". It was an excerpt from a Stanford Bulletin Board discussion on the addictive nature of computer use. In the 1982 film Tron, Kevin Flynn (Jeff Bridges) describes his intentions to break into ENCOM\'s computer system, saying "I\'ve been doing a little hacking here". CLU is the software he uses for this. By 1983, hacking in the sense of breaking computer security had already been in use as computer jargon,[8] but there was no public awareness about such activities.[9] However, the release of the film WarGames that year, featuring a computer intrusion into NORAD, raised the public belief that computer security hackers (especially teenagers) could be a threat to national security. This concern became real when, in the same year, a gang of teenage hackers in Milwaukee, Wisconsin, known as The 414s, broke into computer systems throughout the United States and Canada, including those of Los Alamos National Laboratory, Sloan-Kettering Cancer Center and Security Pacific Bank.[10] The case quickly grew media attention,[10][11] and 17-year-old Neal Patrick emerged as the spokesman for the gang, including a cover story in Newsweek entitled "Beware: Hackers at play", with Patrick\'s photograph on the cover.[12] The Newsweek article appears to be the first use of the word hacker by the mainstream media in the pejorative sense.
+
+Pressured by media coverage, congressman Dan Glickman called for an investigation and began work on new laws against computer hacking.[13][14] Neal Patrick testified before the U.S. House of Representatives on September 26, 1983, about the dangers of computer hacking, and six bills concerning computer crime were introduced in the House that year.[14] As a result of these laws against computer criminality, white hat, grey hat and black hat hackers try to distinguish themselves from each other, depending on the legality of their activities. These moral conflicts are expressed in The Mentor\'s "The Hacker Manifesto", published 1986 in Phrack.
+
+Use of the term hacker meaning computer criminal was also advanced by the title "Stalking the Wily Hacker", an article by Clifford Stoll in the May 1988 issue of the Communications of the ACM. Later that year, the release by Robert Tappan Morris, Jr. of the so-called Morris worm provoked the popular media to spread this usage. The popularity of Stoll\'s book The Cuckoo\'s Egg, published one year later, further entrenched the term in the public\'s consciousness
+</string>
+
+    <string name="computer">
+        The earliest foundations of what would become computer science predate the invention of the modern digital computer. Machines for calculating fixed numerical tasks such as the abacus have existed since antiquity, aiding in computations such as multiplication and division. Further, algorithms for performing computations have existed since antiquity, even before the development of sophisticated computing equipment. The ancient Sanskrit treatise Shulba Sutras, or "Rules of the Chord", is a book of algorithms written in 800 BC for constructing geometric objects like altars using a peg and chord, an early precursor of the modern field of computational geometry.
+
+Blaise Pascal designed and constructed the first working mechanical calculator, Pascal\'s calculator, in 1642.[2] In 1673, Gottfried Leibniz demonstrated a digital mechanical calculator, called the Stepped Reckoner.[3] He may be considered the first computer scientist and information theorist, for, among other reasons, documenting the binary number system. In 1820, Thomas de Colmar launched the mechanical calculator industry[note 1] when he released his simplified arithmometer, which was the first calculating machine strong enough and reliable enough to be used daily in an office environment. Charles Babbage started the design of the first automatic mechanical calculator, his Difference Engine, in 1822, which eventually gave him the idea of the first programmable mechanical calculator, his Analytical Engine.[4] He started developing this machine in 1834 and "in less than two years he had sketched out many of the salient features of the modern computer".[5] "A crucial step was the adoption of a punched card system derived from the Jacquard loom"[5] making it infinitely programmable.[note 2] In 1843, during the translation of a French article on the Analytical Engine, Ada Lovelace wrote, in one of the many notes she included, an algorithm to compute the Bernoulli numbers, which is considered to be the first computer program.[6] Around 1885, Herman Hollerith invented the tabulator, which used punched cards to process statistical information; eventually his company became part of IBM. In 1937, one hundred years after Babbage\'s impossible dream, Howard Aiken convinced IBM, which was making all kinds of punched card equipment and was also in the calculator business[7] to develop his giant programmable calculator, the ASCC/Harvard Mark I, based on Babbage\'s Analytical Engine, which itself used cards and a central computing unit. When the machine was finished, some hailed it as "Babbage\'s dream come true".[8]
+
+During the 1940s, as new and more powerful computing machines were developed, the term computer came to refer to the machines rather than their human predecessors.[9] As it became clear that computers could be used for more than just mathematical calculations, the field of computer science broadened to study computation in general. Computer science began to be established as a distinct academic discipline in the 1950s and early 1960s.[10][11] The world\'s first computer science degree program, the Cambridge Diploma in Computer Science, began at the University of Cambridge Computer Laboratory in 1953. The first computer science degree program in the United States was formed at Purdue University in 1962.[12] Since practical computers became available, many applications of computing have become distinct areas of study in their own rights.
+
+Although many initially believed it was impossible that computers themselves could actually be a scientific field of study, in the late fifties it gradually became accepted among the greater academic population.[13][14] It is the now well-known IBM brand that formed part of the computer science revolution during this time. IBM (short for International Business Machines) released the IBM 704[15] and later the IBM 709[16] computers, which were widely used during the exploration period of such devices. "Still, working with the IBM [computer] was frustrating […] if you had misplaced as much as one letter in one instruction, the program would crash, and you would have to start the whole process over again".[13] During the late 1950s, the computer science discipline was very much in its developmental stages, and such issues were commonplace.[14]
+
+Time has seen significant improvements in the usability and effectiveness of computing technology.[17] Modern society has seen a significant shift in the users of computer technology, from usage only by experts and professionals, to a near-ubiquitous user base. Initially, computers were quite costly, and some degree of human aid was needed for efficient use—in part from professional computer operators. As computer adoption became more widespread and affordable, less human assistance was needed for common usage.
+    </string>
+    <string name="automobile">
+        Some of the engineering attributes and disciplines that are of importance to the automotive engineer and many of the other aspects are included in it:
+
+Safety engineering: Safety engineering is the assessment of various crash scenarios and their impact on the vehicle occupants. These are tested against very stringent governmental regulations. Some of these requirements include: seat belt and air bag functionality testing, front and side impact testing, and tests of rollover resistance. Assessments are done with various methods and tools, including Computer crash simulation (typically finite element analysis), crash test dummies, and partial system sled and full vehicle crashes.
+
+Fuel economy/emissions: Fuel economy is the measured fuel efficiency of the vehicle in miles per gallon or kilometers per litre. Emissions testing includes the measurement of vehicle emissions, including hydrocarbons, nitrogen oxides (NOx), carbon monoxide (CO), carbon dioxide (CO2), and evaporative emissions.
+
+Vehicle dynamicstauqir
+
+Vehicle dynamics is the vehicle\'s response of the following attributes: ride, handling, steering, braking, comfort and traction. Design of the chassis systems of suspension, steering, braking, structure (frame), wheels and tires, and traction control are highly leveraged by the vehicle dynamics engineer to deliver the vehicle dynamics qualities desired.
+NVH engineering (noise, vibration, and harshness): NVH is the customer\'s feedback (both tactile [felt] and audible [heard]) from the vehicle. While sound can be interpreted as a rattle, squeal, or hoot, a tactile response can be seat vibration, or a buzz in the steering wheel. This feedback is generated by components either rubbing, vibrating, or rotating. NVH response can be classified in various ways: powertrain NVH, road noise, wind noise, component noise, and squeak and rattle. Note, there are both good and bad NVH qualities. The NVH engineer works to either eliminate bad NVH, or change the “bad NVH” to good (i.e., exhaust tones).
+
+Vehicle Electronics: Automotive electronics is an increasingly important aspect of automotive engineering. Modern vehicles employ dozens of electronic systems.[1] These systems are responsible for operational controls such as the throttle, brake and steering controls; as well as many comfort and convenience systems such as the HVAC, infotainment, and lighting systems. It would not be possible for automobiles to meet modern safety and fuel economy requirements without electronic controls.
+
+Performance: Performance is a measurable and testable value of a vehicles ability to perform in various conditions. Performance can be considered in a wide variety of tasks, but it\'s generally associated with how quickly a car can accelerate (e.g. standing start 1/4 mile elapsed time, 0–60 mph, etc.), its top speed, how short and quickly a car can come to a complete stop from a set speed (e.g. 70-0 mph), how much g-force a car can generate without losing grip, recorded lap times, cornering speed, brake fade, etc. Performance can also reflect the amount of control in inclement weather (snow, ice, rain).
+
+Shift quality: Shift quality is the driver’s perception of the vehicle to an automatic transmission shift event. This is influenced by the powertrain (engine, transmission), and the vehicle (driveline, suspension, engine and powertrain mounts, etc.) Shift feel is both a tactile (felt) and audible (heard) response of the vehicle. Shift quality is experienced as various events: Transmission shifts are felt as an upshift at acceleration (1–2), or a downshift maneuver in passing (4–2). Shift engagements of the vehicle are also evaluated, as in Park to Reverse, etc.
+
+
+Durability / corrosion engineering: Durability and corrosion engineering is the evaluation testing of a vehicle for its useful life. Tests include mileage accumulation, severe driving conditions, and corrosive salt baths.
+
+Package / ergonomics engineering: Package engineering is a discipline that designs/analyzes the occupant accommodations (seat roominess), ingress/egress to the vehicle, and the driver’s field of vision (gauges and windows). The package engineer is also responsible for other areas of the vehicle like the engine compartment, and the component to component placement. Ergonomics is the discipline that assesses the occupant\'s access to the steering wheel, pedals, and other driver/passenger controls.
+
+Climate control: Climate control is the customer’s impression of the cabin environment and level of comfort related to the temperature and humidity. From the windshield defrosting, to the heating and cooling capacity, all vehicle seating positions are evaluated to a certain level of comfort.
+
+Drivability: Drivability is the vehicle’s response to general driving conditions. Cold starts and stalls, RPM dips, idle response, launch hesitations and stumbles, and performance levels.
+
+Cost: The cost of a vehicle program is typically split into the effect on the variable cost of the vehicle, and the up-front tooling and fixed costs associated with developing the vehicle. There are also costs associated with warranty reductions, and marketing.
+
+Program timing: To some extent programs are timed with respect to the market, and also to the production schedules of the assembly plants. Any new part in the design must support the development and manufacturing schedule of the model.
+
+Assembly feasibility: It is easy to design a module that is hard to assemble, either resulting in damaged units, or poor tolerances. The skilled product development engineer works with the assembly/manufacturing engineers so that the resulting design is easy and cheap to make and assemble, as well as delivering appropriate functionality and appearance.
+
+Quality management: Quality control is an important factor within the production process, as high quality is needed to meet customer requirements and to avoid expensive recall campaigns. The complexity of components involved in the production process requires a combination of different tools and techniques for quality control. Therefore, the International Automotive Task Force (IATF), a group of the world’s leading manufacturers and trade organizations, developed the standard ISO/TS 16949. This standard defines the design, development, production, and when relevant, installation and service requirements. Furthermore, it combines the principles of ISO 9001 with aspects of various regional and national automotive standards such as AVSQ (Italy), EAQF (France), VDA6 (Germany) and QS-9000 (USA). In order to further minimize risks related to product failures and liability claims of automotive electric and electronic systems, the quality discipline functional safety according to ISO/IEC 17025 is applied.
+
+Since the 1950s, the comprehensive business approach total quality management, TQM, helps to continuously improve the production process of automotive products and components. Some of the companies who have implemented TQM include Ford Motor Company, Motorola and Toyota Motor Company.[2]
+    </string>
+    <string name="java">
+        Java is a general-purpose computer programming language that is concurrent, class-based, object-oriented,[14] and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers "write once, run anywhere" (WORA),[15] meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.[16] Java applications are typically compiled to bytecode that can run on any Java virtual machine (JVM) regardless of computer architecture. As of 2016, Java is one of the most popular programming languages in use,[17][18][19][20] particularly for client-server web applications, with a reported 9 million developers.[citation needed] Java was originally developed by James Gosling at Sun Microsystems (which has since been acquired by Oracle Corporation) and released in 1995 as a core component of Sun Microsystems\' Java platform. The language derives much of its syntax from C and C++, but it has fewer low-level facilities than either of them.
+
+The original and reference implementation Java compilers, virtual machines, and class libraries were originally released by Sun under proprietary licences. As of May 2007, in compliance with the specifications of the Java Community Process, Sun relicensed most of its Java technologies under the GNU General Public License. Others have also developed alternative implementations of these Sun technologies, such as the GNU Compiler for Java (bytecode compiler), GNU Classpath (standard libraries), and IcedTea-Web (browser plugin for applets).
+
+The latest version is Java 8, which is the only version currently supported for free by Oracle, although earlier versions are supported both by Oracle and other companies on a commercial basis.
+
+\n\n
+        James Gosling, Mike Sheridan, and Patrick Naughton initiated the Java language project in June 1991.[21] Java was originally designed for interactive television, but it was too advanced for the digital cable television industry at the time.[22] The language was initially called Oak after an oak tree that stood outside Gosling\'s office. Later the project went by the name Green and was finally renamed Java, from Java coffee.[23] Gosling designed Java with a C/C++-style syntax that system and application programmers would find familiar.[24]
+
+Sun Microsystems released the first public implementation as Java 1.0 in 1995.[25] It promised "Write Once, Run Anywhere" (WORA), providing no-cost run-times on popular platforms. Fairly secure and featuring configurable security, it allowed network- and file-access restrictions. Major web browsers soon incorporated the ability to run Java applets within web pages, and Java quickly became popular, while mostly outside of browsers, that wasn\'t the original plan. In January 2016, Oracle announced that Java runtime environments based on JDK 9 will discontinue the browser plugin.[26] The Java 1.0 compiler was re-written in Java by Arthur van Hoff to comply strictly with the Java 1.0 language specification.[27] With the advent of Java 2 (released initially as J2SE 1.2 in December 1998 – 1999), new versions had multiple configurations built for different types of platforms. J2EE included technologies and APIs for enterprise applications typically run in server environments, while J2ME featured APIs optimized for mobile applications. The desktop version was renamed J2SE. In 2006, for marketing purposes, Sun renamed new J2 versions as Java EE, Java ME, and Java SE, respectively.
+
+In 1997, Sun Microsystems approached the ISO/IEC JTC 1 standards body and later the Ecma International to formalize Java, but it soon withdrew from the process.[28][29][30] Java remains a de facto standard, controlled through the Java Community Process.[31] At one time, Sun made most of its Java implementations available without charge, despite their proprietary software status. Sun generated revenue from Java through the selling of licenses for specialized products such as the Java Enterprise System.
+
+On November 13, 2006, Sun released much of its Java virtual machine (JVM) as free and open-source software, (FOSS), under the terms of the GNU General Public License (GPL). On May 8, 2007, Sun finished the process, making all of its JVM\'s core code available under free software/open-source distribution terms, aside from a small portion of code to which Sun did not hold the copyright.[32]
+
+Sun\'s vice-president Rich Green said that Sun\'s ideal role with regard to Java was as an "evangelist".[33] Following Oracle Corporation\'s acquisition of Sun Microsystems in 2009–10, Oracle has described itself as the "steward of Java technology with a relentless commitment to fostering a community of participation and transparency".[34] This did not prevent Oracle from filing a lawsuit against Google shortly after that for using Java inside the Android SDK (see Google section below). Java software runs on everything from laptops to data centers, game consoles to scientific supercomputers.[35] On April 2, 2010, James Gosling resigned from Oracle.[36]
+    </string>
+    <string name="sdlc">
+    In software engineering, a software development methodology (also known as a system development methodology, software development life cycle, software development process, software process) is a splitting of software development work into distinct phases (or stages) containing activities with the intent of better planning and management. It is often considered a subset of the systems development life cycle. The methodology may include the pre-definition of specific deliverables and artifacts that are created and completed by a project team to develop or maintain an application.[1]
+
+Common methodologies include waterfall, prototyping, iterative and incremental development, spiral development, rapid application development, extreme programming and various types of agile methodology. Some people consider a life-cycle "model" a more general term for a category of methodologies and a software development "process" a more specific term to refer to a specific process chosen by a specific organization. For example, there are many specific software development processes that fit the spiral life-cycle model.
+
+    \n\n
+    A variety of such frameworks have evolved over the years, each with its own recognized strengths and weaknesses. One software development methodology framework is not necessarily suitable for use by all projects. Each of the available methodology frameworks are best suited to specific kinds of projects, based on various technical, organizational, project and team considerations.[1]
+
+Software development organizations implement process methodologies to ease the process of development. Sometimes, contractors may require methodologies employed, an example is the U.S. defense industry, which requires a rating based on process models to obtain contracts. The international standard for describing the method of selecting, implementing and monitoring the life cycle for software is ISO/IEC 12207.
+
+A decades-long goal has been to find repeatable, predictable processes that improve productivity and quality. Some try to systematize or formalize the seemingly unruly task of designing software. Others apply project management techniques to designing software. Without effective project management, software projects can easily be delivered late or over budget. With large numbers of software projects not meeting their expectations in terms of functionality, cost, or delivery schedule,[citation needed] it is effective project management that appears to be lacking.
+
+Organizations may create a Software Engineering Process Group (SEPG), which is the focal point for process improvement. Composed of line practitioners who have varied skills, the group is at the center of the collaborative effort of everyone in the organization who is involved with software engineering process improvement.
+
+A particular development team may also agree to programming environment details, such as which integrated development environment is used, and one or more dominant programming paradigms, programming style rules, or choice of specific software libraries or software frameworks. These details are generally not dictated by the choice of model or general methodology.
+</string>
+    <string name="title_activity_video_watch">VideoWatchActivity</string>
+
+    <string name="linux" formatted="false">
+        Linux was originally developed as a free operating system for personal computers based on the Intel x86 architecture, but has since been ported to more computer hardware platforms than any other operating system.[18] Because of the dominance of Android on smartphones, Linux has the largest installed base of all general-purpose operating systems.[19] Linux, in its original form, is also the leading operating system on servers and other big iron systems such as mainframe computers and virtually all fastest supercomputers,[20][21] but is used on only around 1.6% of desktop computers[22][23] when not including Chrome OS, which has about 5% of the overall and nearly 20% of the sub-$300 notebook sales.[24] Linux also runs on embedded systems, which are devices whose operating system is typically built into the firmware and is highly tailored to the system; this includes smartphones and tablet computers running Android and other Linux derivatives,[25] TiVo and similar DVR devices, network routers, facility automation controls, televisions,[26][27] video game consoles and smartwatches.[28]
+
+The development of Linux is one of the most prominent examples of free and open-source software collaboration. The underlying source code may be used, modified and distributed—​​commercially or non-commercially—​​by anyone under the terms of its respective licenses, such as the GNU General Public License. Typically, Linux is packaged in a form known as a Linux distribution (or distro for short) for both desktop and server use. Some of the popular mainstream Linux distributions are Debian, Ubuntu, Linux Mint, Fedora, openSUSE, Arch Linux and Gentoo, together with commercial distributions such as Red Hat Enterprise Linux and SUSE Linux Enterprise Server. Distributions include the Linux kernel, supporting utilities and libraries, and usually a large amount of application software to fulfill the distribution\'s intended use.
+
+Distributions oriented toward desktop use typically include a windowing system, such as X11, Mir or a Wayland implementation, and an accompanying desktop environment such as GNOME or the KDE Software Compilation; some distributions may also include a less resource-intensive desktop, such as LXDE or Xfce. Distributions intended to run on servers may omit all graphical environments from the standard install, and instead include other software to set up and operate a solution stack such as LAMP. Because Linux is freely redistributable, anyone may create a distribution for any intended use.
+
+
+    </string>
+    <string name="title_activity_notice_board">NoticeBoardActivity</string>
+    <string name="hello">Hello</string>
+
+    <string name="title_activity_enter_notice">EnterNotice</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_find_nearest">FindNearest</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="company_name">Tap2Gain.com</string>
+    <string name="college_name">Bundelkhand University</string>
+    <string name="company_address">402 B Wing, Madina Park Building, Khardi Road,\n Kausa Mumbra 400046, Maharashtra</string>
+    <string name="title_activity_attendence">AttendenceActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_attendance">AttendanceActivity</string>
+    <string name="title_activity_attendance_mc">AttendanceMCA</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_Green"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.hp.stickpick.activity.VideoActivity"
+    tools:showIn="@layout/activity_video">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Automobile Engineering"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Sixth Sense Technology"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Introduction to Computer Science"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Java Tutorial for Beginners"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Android Programming"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Introduction to Linux"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Introduction to Hacking"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text8"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background"
+            android:paddingLeft="40dp"
+            android:gravity="center"
+            android:text="Software Development Lifecycle"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

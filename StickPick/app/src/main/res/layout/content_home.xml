@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_Green"
+    android:id="@+id/coordinateLayout"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.hp.stickpick.activity.HomeActivity"
+    tools:showIn="@layout/app_bar_home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/hometitle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_background"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:text="Welcome!"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo_login"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:background="@color/green_bg_leftPanel"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="click2hike.com"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:id="@+id/click2hike"
+                android:textStyle="italic"
+                android:textColor="@color/yellow"
+                />
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/attendance_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_button"
+            app:layout_anchor="@id/app_bar"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/find_nearest_fab"
+            android:layout_toStartOf="@+id/find_nearest_fab" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/find_nearest_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map"
+            app:layout_anchor="@id/app_bar"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/open_notice_dialog"
+            android:layout_toStartOf="@+id/open_notice_dialog" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/open_notice_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notice_pen"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            app:layout_anchor="@id/app_bar"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/hometitle"
+            android:layout_alignEnd="@+id/hometitle" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:background="@drawable/logo_login"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@+id/logo">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="3.5"
+                android:hint="Change teacher code"
+                android:textColorHint="@color/blue"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"
+                android:id="@+id/teacherCodeEdt"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="post"
+                android:textColor="@color/blue"
+                android:backgroundTint="@color/blue"
+                android:id="@+id/teacherCodeBtn"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hometitle"
+            android:visibility="gone"
+            android:id="@+id/relativeMap">
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:map="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/mapView"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!--android:background="@drawable/home_bc"-->
+
+</android.support.design.widget.CoordinatorLayout>

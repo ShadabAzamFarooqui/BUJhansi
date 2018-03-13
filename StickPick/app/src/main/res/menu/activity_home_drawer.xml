@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/bundelkhand_university"
+            android:icon="@drawable/bu_jhansi"
+            android:title="Open Website" />
+        <item
+            android:id="@+id/notice_board"
+            android:icon="@drawable/noticeboardicon"
+            android:title="Notice Board" />
+
+
+
+        <!--<item
+            android:id="@+id/discussion_forum"
+            android:icon="@drawable/forum"
+            android:title="Discussion Forum" />-->
+
+        <item
+            android:id="@+id/video_lectures"
+            android:icon="@drawable/videolecs"
+            android:title="Video Lectures" />
+        <item
+            android:id="@+id/teacher_list"
+            android:icon="@drawable/teacher"
+            android:title="Teacher List" />
+        <item
+            android:id="@+id/live_chat"
+            android:icon="@drawable/ic_chat_black_36dp"
+            android:title="Live Chat"
+            android:visible="false" />
+        <group>
+
+            <item
+                android:id="@+id/show_all"
+                android:icon="@drawable/userlist_black"
+                android:title="Student List"
+                app:actionLayout="@layout/arrow_action_layout" />
+
+            <group>
+                <item
+                    android:id="@+id/nav_all_student"
+                    android:icon="@drawable/one"
+                    android:title="    All Student"
+                    android:visible="false" />
+
+                <item
+                    android:id="@+id/nav_mca"
+                    android:icon="@drawable/two"
+                    android:title="    MCA"
+                    android:visible="false"
+                    app:actionLayout="@layout/arrow_action_layout" />
+                <item
+                    android:id="@+id/nav_mca_1st"
+                    android:title="          1st"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_mca_2nd"
+                    android:title="          2nd"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_mca_3rd"
+                    android:title="          3rd"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_mca_4th"
+                    android:title="          4th"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_mca_5th"
+                    android:title="          5th"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_mca_6th"
+                    android:title="          6th"
+                    android:visible="false" />
+            </group>
+            <group>
+
+                <item
+                    android:id="@+id/nav_bca"
+                    android:icon="@drawable/three"
+                    android:title="    BCA"
+                    android:visible="false"
+                    app:actionLayout="@layout/arrow_action_layout" />
+                <item
+                    android:id="@+id/nav_bca_1st"
+                    android:title="          1st"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_bca_2nd"
+                    android:title="          2nd"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_bca_3rd"
+                    android:title="          3rd"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_bca_4th"
+                    android:title="          4th"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_bca_5th"
+                    android:title="          5th"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/nav_bca_6th"
+                    android:title="          6th"
+                    android:visible="false" />
+            </group>
+
+        </group>
+        <item
+            android:id="@+id/stack_overflow"
+            android:icon="@drawable/stack_overflow"
+            android:title="Stack Overflow" />
+
+
+        <group>
+            <item
+                android:id="@+id/nearest"
+                android:icon="@drawable/find_nearest_black"
+                android:title="Find Nearest"
+                app:actionLayout="@layout/arrow_action_layout" />
+
+            <item
+                android:id="@+id/nav_atm"
+                android:icon="@drawable/one"
+                android:title="ATM "
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_bank"
+                android:icon="@drawable/two"
+                android:title="Bank "
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_doctor"
+                android:icon="@drawable/three"
+                android:title="Doctor "
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_hospital"
+                android:icon="@drawable/four"
+                android:title="Hospital "
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_police"
+                android:icon="@drawable/five"
+                android:title="Police Station "
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_restra"
+                android:icon="@drawable/six"
+                android:title="Restaurant "
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_company"
+                android:icon="@drawable/seven"
+                android:title="Other Places "
+                android:visible="false" />
+        </group>
+        <item
+            android:id="@+id/map"
+            android:icon="@drawable/map"
+            android:title="Open Map"/>
+        <item
+            android:id="@+id/nav_result"
+            android:icon="@drawable/results"
+            android:title="Campus Result" />
+
+
+
+       <!-- <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logouticon"
+            android:title="Logout" />
+-->
+    </group>
+    <group>
+        <item
+            android:id="@+id/account_setting"
+            android:icon="@drawable/setting_black"
+            android:title="Account Setting"
+            app:actionLayout="@layout/arrow_action_layout"
+            android:visible="true" />
+        <item
+            android:id="@+id/update_account"
+            android:icon="@drawable/update_icon"
+            android:title="     Update Account"
+            android:visible="false" />
+        <item
+            android:id="@+id/delete_account"
+            android:icon="@drawable/delete_icon"
+            android:title="     Delete Account"
+            android:visible="false" />
+    </group>
+
+
+
+    <item
+        android:id="@+id/contact_us"
+        android:icon="@drawable/contactusicon"
+        android:title="Contact Us" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/about_us_icon"
+        android:title="About" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logouticon"
+        android:title="Logout "
+        android:visible="true" />
+
+</menu>
