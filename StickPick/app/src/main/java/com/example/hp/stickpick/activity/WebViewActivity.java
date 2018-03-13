@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 import com.example.hp.stickpick.utils.HelperActivity;
 import com.example.hp.stickpick.R;
 
-public class FacebookActivity extends AppCompatActivity {
+public class WebViewActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
     String dataUrl = "http://facebook.com/shadabazam.it";

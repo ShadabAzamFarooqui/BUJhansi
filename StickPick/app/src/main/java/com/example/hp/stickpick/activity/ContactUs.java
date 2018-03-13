@@ -77,7 +77,7 @@ public class ContactUs extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HomeActivity.checkBuFb=2;
-                Intent intent=new Intent(ContactUs.this,FacebookActivity.class);
+                Intent intent=new Intent(ContactUs.this,WebViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -85,7 +85,7 @@ public class ContactUs extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HomeActivity.checkBuFb=2;
-                Intent intent=new Intent(ContactUs.this,FacebookActivity.class);
+                Intent intent=new Intent(ContactUs.this,WebViewActivity.class);
                 startActivity(intent);
             }
         });

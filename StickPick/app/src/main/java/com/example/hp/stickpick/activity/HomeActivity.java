@@ -11,9 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
@@ -638,7 +636,7 @@ public class HomeActivity extends AppCompatActivity
                 @Override
                 public void run() {
                     checkBuFb = 1;
-                    Intent intent = new Intent(HomeActivity.this, FacebookActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, WebViewActivity.class);
                     startActivity(intent);
 
                 }
@@ -649,7 +647,7 @@ public class HomeActivity extends AppCompatActivity
                 @Override
                 public void run() {
                     checkBuFb = 3;
-                    Intent intent = new Intent(HomeActivity.this, FacebookActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, WebViewActivity.class);
                     startActivity(intent);
 
 
@@ -708,7 +706,7 @@ public class HomeActivity extends AppCompatActivity
                 @Override
                 public void run() {
                     HomeActivity.checkBuFb = 4;
-                    Intent intent = new Intent(HomeActivity.this, FacebookActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, WebViewActivity.class);
                     startActivity(intent);
 
 
