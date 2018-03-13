@@ -115,7 +115,7 @@
             android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".android_retrofit.activity.Map"
+            android:name=".android_retrofit.activity.MapPlaceActivity"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".activity.AboutActivity"

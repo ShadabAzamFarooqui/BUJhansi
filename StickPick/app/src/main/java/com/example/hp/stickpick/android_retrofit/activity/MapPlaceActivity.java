@@ -49,7 +49,7 @@ import retrofit2.Response;
  * Created by Shadab Azam Farooqui on 24-Dec-17.
  */
 
-public class Map extends AppCompatActivity implements OnMapReadyCallback,
+public class MapPlaceActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
@@ -211,7 +211,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
         // Adding colour to the marker
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
-        // Adding Marker to the Map
+        // Adding Marker to the MapPlaceActivity
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         //move map camera
@@ -222,9 +222,9 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
 
         Log.d("onLocationChanged", "Exit");
 
-        if (Map.boolForMapList){
+        if (MapPlaceActivity.boolForMapList){
             handleMosqueRequest("mosque");
-            Map.boolForMapList=false;
+            MapPlaceActivity.boolForMapList=false;
         }
     }
 
@@ -318,7 +318,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
                         String vicinity = response.body().getResults().get(i).getVicinity();
                         MarkerOptions markerOptions = new MarkerOptions();
                         LatLng latLng = new LatLng(lat, lng);
-                        // Position of Marker on Map
+                        // Position of Marker on MapPlaceActivity
                         markerOptions.position(latLng);
                         // Adding Title to the Marker
                         markerOptions.title(placeName + " : " + vicinity);
@@ -334,7 +334,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback,
                             @Override
                             public boolean onMarkerClick(Marker marker) {
 
-                                Toast.makeText(Map.this, "clicked on marker", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MapPlaceActivity.this, "clicked on marker", Toast.LENGTH_SHORT).show();
                                 return false;
                             }
                         });

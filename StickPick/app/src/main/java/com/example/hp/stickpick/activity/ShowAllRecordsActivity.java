@@ -20,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +54,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     ListView listView;
+    AutoCompleteTextView autoCompleteTextView;
     int i;
     int position;
     ArrayList<String> listName;
@@ -86,7 +89,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_record);
-
+        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autocomplete);
         Intent i = getIntent();
 
         if (HomeActivity.intShowRecordTitle == 0) {
@@ -133,6 +136,20 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
 
     }
 
+    private void autoCompleteTextView(List list) {
+        autoCompleteTextView.setThreshold(1);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
+        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ShowAllRecordsActivity.this, adapter.getItem(i), Toast.LENGTH_SHORT).show();
+                autoCompleteTextView.setText("");
+            }
+        });
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -141,10 +158,6 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
-        if (Networking.isConnected(ShowAllRecordsActivity.this)) {
-            progressDialog.dismiss();
-        }
     }
 
     void getAllRecord() {
@@ -227,6 +240,11 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                 }
             }
             progressDialog.dismiss();
+//            List autoCompleteList=new ArrayList();
+//            for (int i=0;i<listName.size();i++){
+//                autoCompleteList.add(listName.get(i)+"\n"+listMobile.get(i));
+//            }
+//            autoCompleteTextView(autoCompleteList);
         }
 
         listBean = new ArrayList();
@@ -252,9 +270,14 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                     listCourseSemester.add(listBean.get(a));
                 }
             }
-
             MyAdapter myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listCourseSemester);
             listView.setAdapter(myAdapter);
+
+            List autoCompleteList=new ArrayList();
+            for (int i=0;i<listCourseSemester.size();i++){
+                autoCompleteList.add(listCourseSemester.get(i).getName()+"\n"+listCourseSemester.get(i).getMobile());
+            }
+            autoCompleteTextView(autoCompleteList);
         } else {
             for (int a = 0; a < listBean.size(); a++) {
                 if (listBean.get(a).getCourse().equals("TEACHER")) {
@@ -264,6 +287,12 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             listBean.removeAll(listTeacher);
             MyAdapter myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listBean);
             listView.setAdapter(myAdapter);
+
+            List autoCompleteList=new ArrayList();
+            for (int i=0;i<listBean.size();i++){
+                autoCompleteList.add(listBean.get(i).getName()+"\n"+listBean.get(i).getMobile());
+            }
+            autoCompleteTextView(autoCompleteList);
         }
 
 
@@ -272,7 +301,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!HomeActivity.boolCourseSem) {
                     ShowAllRecordsActivity.this.i = i;
-                    final CharSequence[] items = {"Call","Sms", "Email", "Remove"};
+                    final CharSequence[] items = {"Call", "Sms", "Email", "Remove"};
                     ShowAllRecordsActivity.this.i = i;
                     AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
                     builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -304,7 +333,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                 msgBtn.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        if (msgEdt.getText().toString().trim().isEmpty()){
+                                        if (msgEdt.getText().toString().trim().isEmpty()) {
                                             Toast toast = Toast.makeText(getApplicationContext(),
                                                     "Please write something", Toast.LENGTH_SHORT);
                                             toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -320,7 +349,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                 openDialog.show();
 
 
-                            }  else if (item == 2) {
+                            } else if (item == 2) {
                                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                                         "mailto", listBean.get(position).getEmail().toString(), null));
                                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");
@@ -374,7 +403,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                 } else {
                     {
                         ShowAllRecordsActivity.this.i = i;
-                        final CharSequence[] items = {"Call","Sms", "Email", "Remove"};
+                        final CharSequence[] items = {"Call", "Sms", "Email", "Remove"};
                         ShowAllRecordsActivity.this.i = i;
                         AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
                         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -405,7 +434,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                     msgBtn.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            if (msgEdt.getText().toString().trim().isEmpty()){
+                                            if (msgEdt.getText().toString().trim().isEmpty()) {
                                                 Toast toast = Toast.makeText(getApplicationContext(),
                                                         "Please write something", Toast.LENGTH_SHORT);
                                                 toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -421,7 +450,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                     openDialog.show();
 
 
-                                }  else if (item == 2) {
+                                } else if (item == 2) {
                                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                                             "mailto", listCourseSemester.get(ShowAllRecordsActivity.this.i).getEmail().toString(), null));
                                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");

@@ -42,6 +42,7 @@ import android.view.Gravity;
 import android.view.Menu;
 
 import com.example.hp.stickpick.R;
+import com.example.hp.stickpick.android_retrofit.activity.MapPlaceActivity;
 import com.example.hp.stickpick.android_retrofit.api.ApiClient;
 import com.example.hp.stickpick.android_retrofit.network.request.GetRequest;
 import com.example.hp.stickpick.utils.Conversion;
@@ -102,7 +103,7 @@ public class HomeActivity extends AppCompatActivity
 
     public static boolean boolNotification = true;
     public int count = 0;
-    //Map
+    //MapPlaceActivity
     private GoogleMap mMap;
     double latitude;
     double longitude;
@@ -161,7 +162,7 @@ public class HomeActivity extends AppCompatActivity
         hometitle = (TextView) findViewById(R.id.hometitle);
 
         SignUpActivity.boolFromSignUp = false;
-        //Map
+        //MapPlaceActivity
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
@@ -1053,7 +1054,7 @@ public class HomeActivity extends AppCompatActivity
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(HomeActivity.this, com.example.hp.stickpick.android_retrofit.activity.Map.class);
+                    Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -1661,7 +1662,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-    // code for Map============================================>
+    // code for MapPlaceActivity============================================>
 
   /*  private void hidePDialog() {
         if (pDialog != null) {
@@ -1840,7 +1841,7 @@ public class HomeActivity extends AppCompatActivity
             // You can add here other case statements according to your requirement.
         }
     }
-    //===Map==================<!
+    //===MapPlaceActivity==================<!
 
 
     @Override

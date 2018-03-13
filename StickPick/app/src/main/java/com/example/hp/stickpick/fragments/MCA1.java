@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.hp.stickpick.activity.SignInActivity;
 import com.example.hp.stickpick.activity.SignUpActivity;
+import com.example.hp.stickpick.bean.ReferenceWrapper;
 import com.example.hp.stickpick.utils.HelperActivity;
 import com.example.hp.stickpick.utils.ParameterConstants;
 import com.example.hp.stickpick.R;
@@ -103,10 +104,19 @@ public class MCA1 extends Fragment {
         summit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!ReferenceWrapper.isNetworkAvailable(getActivity())){
+                    Toast.makeText(getActivity(), "Please check youe internet connection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (MyAdapter.map==null){
+                    Toast.makeText(getActivity(), "Can't submit the attendance before loading the data", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 progressDialog.setMessage("Loading...");
                 progressDialog.show();
                 attendanceList.clear();
                 attendanceList.add("Not Found");
+
                 for (int j = 0; j < MyAdapter.map.get(0).length; j++) {
                     br = MyAdapter.map.get(0);
                     System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD   " + (j + 1) + " " + br[j]);

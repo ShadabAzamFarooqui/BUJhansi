@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.hp.stickpick.R;
 import com.example.hp.stickpick.bean.ListBean;
+import com.example.hp.stickpick.bean.ReferenceWrapper;
 import com.example.hp.stickpick.utils.ParameterConstants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -97,6 +98,14 @@ public class MCA4 extends Fragment {
         summit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!ReferenceWrapper.isNetworkAvailable(getActivity())){
+                    Toast.makeText(getActivity(), "Please check youe internet connection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (MCA1.MyAdapter.map==null){
+                    Toast.makeText(getActivity(), "Can't submit the attendance before loading the data", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 progressDialog.setMessage("Loading...");
                 progressDialog.show();
                 attendanceList.clear();
