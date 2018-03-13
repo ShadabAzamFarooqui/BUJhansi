@@ -240,11 +240,6 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                 }
             }
             progressDialog.dismiss();
-//            List autoCompleteList=new ArrayList();
-//            for (int i=0;i<listName.size();i++){
-//                autoCompleteList.add(listName.get(i)+"\n"+listMobile.get(i));
-//            }
-//            autoCompleteTextView(autoCompleteList);
         }
 
         listBean = new ArrayList();
