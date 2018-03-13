@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
-        <ImageView
+        <com.example.hp.stickpick.utils.CircleImageView
             android:id="@+id/imageFragment"
             android:layout_width="300dp"
             android:layout_height="300dp"
