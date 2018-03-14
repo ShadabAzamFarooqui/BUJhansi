@@ -1,5 +1,6 @@
 package com.example.hp.stickpick.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,19 +16,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hp.stickpick.R;
+import com.example.hp.stickpick.utils.ParameterConstants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class AboutActivity extends AppCompatActivity {
-    boolean boolExpandCollapse=true;
+    boolean boolExpandCollapse = true;
     @Bind(R.id.btnAbout)
     Button aboutBtn;
     @Bind(R.id.txtAbout)
     TextView aboutTxt;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    boolean boolShowDeveloperOption=true;
+
+    boolean boolShowDeveloperOption = true;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,23 +52,24 @@ public class AboutActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        aboutBtn= (Button) findViewById(R.id.btnAbout);
-        aboutTxt= (TextView) findViewById(R.id.txtAbout);
+        aboutBtn = (Button) findViewById(R.id.btnAbout);
+        aboutTxt = (TextView) findViewById(R.id.txtAbout);
         aboutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (boolExpandCollapse){
+                if (boolExpandCollapse) {
                     aboutTxt.setMaxLines(aboutTxt.getText().length());
                     aboutBtn.setText("...Less");
-                    boolExpandCollapse=false;
-                }
-                else {
+                    boolExpandCollapse = false;
+                } else {
                     aboutTxt.setMaxLines(20);
                     aboutBtn.setText("More...");
-                    boolExpandCollapse=true;
+                    boolExpandCollapse = true;
                 }
             }
         });
+
+
 
        /* LinearLayout showDeveloper= (LinearLayout) findViewById(R.id.showDeveloper);
         final LinearLayout developerOption= (LinearLayout) findViewById(R.id.developerOption);
@@ -98,4 +114,7 @@ public class AboutActivity extends AppCompatActivity {
         });*/
 
     }
+
+
+
 }

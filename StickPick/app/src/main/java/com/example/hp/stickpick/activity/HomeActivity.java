@@ -331,6 +331,14 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        FloatingActionButton show_attendance_fab = (FloatingActionButton) findViewById(R.id.show_attendance_fab);
+        show_attendance_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ShowAttendanceActivity.class);
+                startActivity(intent);
+            }
+        });
         FloatingActionButton findNearestFab = (FloatingActionButton) findViewById(R.id.find_nearest_fab);
         findNearestFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -400,7 +408,7 @@ public class HomeActivity extends AppCompatActivity
 
 //                        bitmap = ((BitmapDrawable) enterImageNotice.getDrawable()).getBitmap();
 
-                        if (bitmap!=null) {
+                        if (bitmap != null) {
                             noticeBean.setImage(Conversion.stringFromBitmap(bitmap));
                         } else {
                             noticeBean.setImage("");
@@ -437,7 +445,7 @@ public class HomeActivity extends AppCompatActivity
                                                         "Notice saved", Toast.LENGTH_SHORT);
                                                 toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
                                                 toast.show();
-                                                bitmap=null;
+                                                bitmap = null;
                                             } else {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(getBaseContext(), "Error Occurred.. Please check your internet connection", Toast.LENGTH_LONG).show();
@@ -467,7 +475,7 @@ public class HomeActivity extends AppCompatActivity
 
                     }
                 });
-                bitmap=null;
+                bitmap = null;
                 openDialog.show();
             }
         });
@@ -545,7 +553,7 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        bitmap=null;
+        bitmap = null;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -688,6 +696,22 @@ public class HomeActivity extends AppCompatActivity
                 public void run() {
                     Intent intent = new Intent(HomeActivity.this, ContactUs.class);
                     startActivity(intent);
+                }
+            }, 500);
+
+        } else if (id == R.id.share) {
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sent from m-Billing app");
+                    shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Share the m-Billing App with your friends to spread goodness-Get the app-https://play.google.com/store/apps/details?id=com.lkintechnology.mBilling");
+                    startActivity(Intent.createChooser(shareIntent, "Share via"));
                 }
             }, 500);
 
@@ -1852,8 +1876,8 @@ public class HomeActivity extends AppCompatActivity
             if (requestCode == 1) {
                 onSelecFromGallary(data);
             }
-        }else {
-            bitmap=null;
+        } else {
+            bitmap = null;
         }
     }
 
@@ -1881,7 +1905,8 @@ public class HomeActivity extends AppCompatActivity
         enterImageNotice.setImageBitmap(bitmap);*/
         checkCode(data);
     }
-    void checkCode(Intent data){
+
+    void checkCode(Intent data) {
         Uri uri = data.getData();
         try {
             Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -1899,7 +1924,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<GetRequest> call, Response<GetRequest> response) {
                 try {
-                    HomeActivity.response=response;
+                    HomeActivity.response = response;
                 } catch (Exception e) {
                     Log.d("onResponse", "There is an error");
                     e.printStackTrace();
