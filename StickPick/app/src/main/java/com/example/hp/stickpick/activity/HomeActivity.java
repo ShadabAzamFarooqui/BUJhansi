@@ -45,6 +45,8 @@ import com.example.hp.stickpick.R;
 import com.example.hp.stickpick.android_retrofit.activity.MapPlaceActivity;
 import com.example.hp.stickpick.android_retrofit.api.ApiClient;
 import com.example.hp.stickpick.android_retrofit.network.request.GetRequest;
+import com.example.hp.stickpick.notification.NotificationDatabase;
+import com.example.hp.stickpick.notification.NotificationService;
 import com.example.hp.stickpick.utils.Conversion;
 import com.example.hp.stickpick.utils.Networking;
 import com.example.hp.stickpick.bean.NoticeBean;
@@ -83,6 +85,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -144,6 +147,12 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        startService(new Intent(HomeActivity.this, NotificationService.class));
+        NotificationDatabase database=new NotificationDatabase(getApplicationContext());
+        database.createTable(null);
+        if (!database.isTableExist()) {
+            new NotificationDatabase(getApplicationContext()).insertEvents(ReferenceWrapper.getRefrenceWrapper(getApplicationContext()).getUserBean().getMobile(), "0", "0");
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         final LinearLayout notificationLayout = (LinearLayout) findViewById(R.id.notification_layout);
         setSupportActionBar(toolbar);

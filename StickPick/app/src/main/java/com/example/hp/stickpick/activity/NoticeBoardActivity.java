@@ -44,6 +44,7 @@ import com.example.hp.stickpick.R;
 import com.example.hp.stickpick.bean.NoticeBean;
 import com.example.hp.stickpick.bean.ReferenceWrapper;
 import com.example.hp.stickpick.bean.UserBean;
+import com.example.hp.stickpick.notification.NotificationDatabase;
 import com.example.hp.stickpick.utils.Conversion;
 import com.example.hp.stickpick.utils.Networking;
 import com.example.hp.stickpick.utils.ParameterConstants;
@@ -276,7 +277,12 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
 
                 UserBean userBean = ReferenceWrapper.getRefrenceWrapper(NoticeBoardActivity.this).getUserBean();
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference(ParameterConstants.USERS);
-                dbRef.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean);
+                try {
+                    dbRef.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean);
+                }catch (NullPointerException e){
+                    dbRef.child(ParameterConstants.PROFILE).child(new NotificationDatabase(getApplicationContext()).getMob()).setValue(userBean);
+                }
+
                 if (dataSnapshot.getValue() != null) {
                     Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
                     Collections.reverse(listOfNoticeBean);

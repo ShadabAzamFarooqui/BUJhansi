@@ -138,7 +138,12 @@
             android:name=".activity.AttendanceActivity"
             android:label="@string/title_activity_attendance_mc"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ShowAttendanceActivity"></activity>
+        <activity android:name=".activity.ShowAttendanceActivity" />
+
+        <service
+            android:name=".notification.NotificationService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

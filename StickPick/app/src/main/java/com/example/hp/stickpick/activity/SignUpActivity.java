@@ -372,7 +372,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
                 Toast.makeText(SignUpActivity.this, "verification done line No :153", Toast.LENGTH_LONG).show();
 
-                databaseReference.child(ParameterConstants.PROFILE).child("9506228028").setValue(userBean, new DatabaseReference.CompletionListener() {
+                databaseReference.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         if (databaseError == null) {
@@ -425,11 +425,10 @@ public class SignUpActivity extends AppCompatActivity {
                 scrollingView.setVisibility(View.GONE);
                 linearLayout.setVisibility(View.VISIBLE);
 
-                // ...
             }
         };
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91" + "95062282028",             // Phone number to verify
+                "+91" +mobile,             // Phone number to verify
                 60,                      // Timeout duration
                 TimeUnit.SECONDS,        // Unit of timeout
                 SignUpActivity.this,   // Activity (for callback binding)
@@ -751,5 +750,15 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (scrollingView.getVisibility() != View.VISIBLE) {
+            scrollingView.setVisibility(View.VISIBLE);
+            linearLayout.setVisibility(View.GONE);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
