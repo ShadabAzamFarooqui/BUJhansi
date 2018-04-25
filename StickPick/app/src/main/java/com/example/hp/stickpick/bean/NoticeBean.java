@@ -14,6 +14,17 @@ public class NoticeBean implements Serializable, Comparable {
     private String date;
     private String user;
     private String image;
+    private String mobile;
+
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
 
     public String getImage() {
         return image;

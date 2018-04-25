@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hp.stickpick.R;
+import com.example.hp.stickpick.notification.NotificationDatabase;
 import com.example.hp.stickpick.utils.Networking;
 import com.example.hp.stickpick.utils.ParameterConstants;
 import com.example.hp.stickpick.bean.ReferenceWrapper;
@@ -36,6 +37,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     DatabaseReference databaseReference = database.getReference(ParameterConstants.USERS);
     private DatabaseReference firebaseDatabase;
     private ReferenceWrapper referenceWrapper = ReferenceWrapper.getRefrenceWrapper(this);
+    NotificationDatabase notificationDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
         setContentView(R.layout.splash_page);
 
+        notificationDatabase=new NotificationDatabase(getApplicationContext());
 
         signIn = (Button) findViewById(R.id.signin);
         signUp = (TextView) findViewById(R.id.signup);
@@ -177,6 +180,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                 UserBean userBean = ReferenceWrapper.getRefrenceWrapper(SplashActivity.this).getUserBean();
                 int iteratorCount = (int) dataSnapshot.getChildrenCount();
                 userBean.setNotificationCount(iteratorCount);
+                notificationDatabase.updateValueEvents(""+iteratorCount);
                 DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference(ParameterConstants.USERS);
                 databaseReference1.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean);
             }

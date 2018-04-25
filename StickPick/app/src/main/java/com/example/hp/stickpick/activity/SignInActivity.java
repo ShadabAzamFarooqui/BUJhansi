@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.hp.stickpick.R;
+import com.example.hp.stickpick.notification.NotificationDatabase;
 import com.example.hp.stickpick.utils.HelperActivity;
 import com.example.hp.stickpick.utils.Networking;
 import com.example.hp.stickpick.utils.ParameterConstants;
@@ -36,12 +37,14 @@ public class SignInActivity extends AppCompatActivity {
     private DatabaseReference firebaseDatabase;
     private CheckBox checkBox;
     UserBean bean;
+    NotificationDatabase notificationDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_fragment);
         HelperActivity.setStatusBar(this);
+        notificationDatabase=new NotificationDatabase(getApplicationContext());
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -161,6 +164,7 @@ public class SignInActivity extends AppCompatActivity {
                 UserBean userBean = ReferenceWrapper.getRefrenceWrapper(SignInActivity.this).getUserBean();
                 int iteratorCount = (int) dataSnapshot.getChildrenCount();
                 userBean.setNotificationCount(iteratorCount);
+                notificationDatabase.updateValueEvents(""+iteratorCount);
                 DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference(ParameterConstants.USERS);
                 databaseReferenceUser.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean);
             }

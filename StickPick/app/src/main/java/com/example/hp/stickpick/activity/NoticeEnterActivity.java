@@ -89,6 +89,7 @@ public class NoticeEnterActivity extends AppCompatActivity implements View.OnCli
                 //finish();
             } else {
                 noticeBean.setNoticeText(notice_text);
+                noticeBean.setMobile(userBean.getMobile().toString());
 
 
                 if (Networking.isConnected(NoticeEnterActivity.this)) {

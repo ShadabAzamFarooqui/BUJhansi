@@ -42,7 +42,6 @@ import android.view.Gravity;
 import android.view.Menu;
 
 import com.example.hp.stickpick.R;
-import com.example.hp.stickpick.android_retrofit.activity.MapPlaceActivity;
 import com.example.hp.stickpick.android_retrofit.api.ApiClient;
 import com.example.hp.stickpick.android_retrofit.network.request.GetRequest;
 import com.example.hp.stickpick.notification.NotificationDatabase;
@@ -85,7 +84,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -102,6 +100,8 @@ public class HomeActivity extends AppCompatActivity
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
+    public static boolean notificationHomeHandler;
+    public static boolean notificationNoticeHandler;
     public static Response<GetRequest> response;
 
     public static boolean boolNotification = true;
@@ -146,11 +146,14 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         startService(new Intent(HomeActivity.this, NotificationService.class));
-        NotificationDatabase database=new NotificationDatabase(getApplicationContext());
-        database.createTable(null);
+        NotificationDatabase database = new NotificationDatabase(getApplicationContext());
+        notificationHomeHandler = true;
+        if (notificationNoticeHandler){
+            startActivity(new Intent(this,NoticeBoardActivity.class));
+        }
         if (!database.isTableExist()) {
+            database.createTable(null);
             new NotificationDatabase(getApplicationContext()).insertEvents(ReferenceWrapper.getRefrenceWrapper(getApplicationContext()).getUserBean().getMobile(), "0", "0");
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -437,6 +440,7 @@ public class HomeActivity extends AppCompatActivity
 
                         } else {
                             noticeBean.setNoticeText(notice_text);
+                            noticeBean.setMobile(userBean.getMobile().toString());
                             if (Networking.isConnected(HomeActivity.this)) {
                                 if (userBean.getCourse().equals("TEACHER")) {
                                     progressDialog.show();

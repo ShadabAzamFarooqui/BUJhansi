@@ -69,6 +69,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
     private LinearLayout parentLayout;
     ProgressDialog progressDialog;
 
+    NotificationDatabase notificationDatabase;
 
     TextView nameTV;
     TextView dateTV;
@@ -93,7 +94,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
         setContentView(R.layout.activity_notice_board);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        notificationDatabase = new NotificationDatabase(getApplicationContext());
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setTitle("Notice Board");
@@ -177,6 +178,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
 
                             } else {
                                 noticeBean.setNoticeText(notice_text);
+                                noticeBean.setMobile(userBean.getMobile().toString());
                                 if (Networking.isConnected(NoticeBoardActivity.this)) {
                                     if (userBean.getCourse().equals("TEACHER")) {
                                         progressDialog.show();
@@ -225,7 +227,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
                         }
                     }
                 });
-                bitmap=null;
+                bitmap = null;
                 openDialog.show();
             }
         });
@@ -279,7 +281,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference(ParameterConstants.USERS);
                 try {
                     dbRef.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean);
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     dbRef.child(ParameterConstants.PROFILE).child(new NotificationDatabase(getApplicationContext()).getMob()).setValue(userBean);
                 }
 
@@ -287,7 +289,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
                     Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
                     Collections.reverse(listOfNoticeBean);
                     for (int i = 0; i < listOfNoticeBean.size(); i++) {
-                        position=i;
+                        position = i;
                         convertView = getLayoutInflater().inflate(R.layout.notice_item_layout, null);
                         nameTV = ((TextView) convertView.findViewById(R.id.name));
                         mainLayout = ((LinearLayout) convertView.findViewById(R.id.mainLayout));
@@ -327,6 +329,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
                 int iteratorCount = (int) dataSnapshot.getChildrenCount();
                 UserBean userBean = ReferenceWrapper.getRefrenceWrapper(NoticeBoardActivity.this).getUserBean();
                 userBean.setNotificationCountForSingleEvent(iteratorCount);
+                notificationDatabase.updateSingleEvents(""+iteratorCount);
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference(ParameterConstants.USERS);
                 dbRef.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean);
 
@@ -406,6 +409,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
         databaseReference.setValue(null);
         UserBean userBean = ReferenceWrapper.getRefrenceWrapper(NoticeBoardActivity.this).getUserBean();
         userBean.setNotificationCount(0);
+        notificationDatabase.updateValueEvents("0");
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference(ParameterConstants.USERS);
         dbRef.child(ParameterConstants.PROFILE).child(userBean.getMobile()).setValue(userBean);
         getAllRecord();
@@ -443,6 +447,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
                             UserBean userBean = dataSnapshot.getValue(UserBean.class);
                             if (userBean != null) {
                                 userBean.setNotificationCountForSingleEvent(0);
+                                notificationDatabase.updateSingleEvents("0");
                                 FirebaseDatabase.getInstance().getReference(ParameterConstants.USERS).child(ParameterConstants.PROFILE).child(map.get(key).toString()).setValue(userBean);
                             }
                         }
@@ -490,8 +495,8 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
             if (requestCode == 1) {
                 onSelectFromGalleryResult(data);
             }
-        }else {
-            bitmap=null;
+        } else {
+            bitmap = null;
         }
     }
 
@@ -517,9 +522,10 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
         bm = BitmapFactory.decodeFile(selectedImagePath, options);
         bitmap = bm;
         enterImageNotice.setImageBitmap(bitmap);*/
-       checkCode(data);
+        checkCode(data);
     }
-    void checkCode(Intent data){
+
+    void checkCode(Intent data) {
         Uri uri = data.getData();
         try {
             Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -529,6 +535,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
             e.printStackTrace();
         }
     }
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         ImageView view = (ImageView) v;
@@ -723,6 +730,6 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnTou
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        bitmap=null;
+        bitmap = null;
     }
 }
