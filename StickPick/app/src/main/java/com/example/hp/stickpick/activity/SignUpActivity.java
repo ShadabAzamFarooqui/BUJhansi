@@ -105,9 +105,14 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.signup_fragment);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+            }
+        }catch (Error e){
+
         }
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(true);
         referenceWrapper = ReferenceWrapper.getRefrenceWrapper(this);

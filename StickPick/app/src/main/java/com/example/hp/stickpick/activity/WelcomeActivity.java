@@ -18,7 +18,12 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         Window window = this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+        try {
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
+
+        }catch (Error e){
+
+        }
         Thread t1 = new Thread() {
             public void run() {
                 try {

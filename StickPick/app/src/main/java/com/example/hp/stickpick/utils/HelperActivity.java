@@ -25,9 +25,14 @@ public class HelperActivity extends Activity {
 
    public static void setStatusBar(Activity context){
        Window window = context.getWindow();
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-           window.setStatusBarColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+       try {
+           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+               window.setStatusBarColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+           }
+       }catch (Error e){
+
        }
+
    }
 
     public static void openKeyPad(Activity activity){

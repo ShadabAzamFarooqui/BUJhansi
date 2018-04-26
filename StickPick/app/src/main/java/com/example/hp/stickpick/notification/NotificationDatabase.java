@@ -63,7 +63,9 @@ public class NotificationDatabase extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Cv.SINGLE_EVENT_COUNT, singleEvent);
         return db.update(Cv.TABLE_NOTIFICATION, contentValues, Cv.MOBILE + "=" + getMob(), null) > 0;
-    } public boolean updateValueEvents( String valueEvent) {
+    }
+
+    public boolean updateValueEvents(String valueEvent) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Cv.VALUE_EVENT_COUNT, valueEvent);

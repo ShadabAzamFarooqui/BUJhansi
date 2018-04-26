@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.example.hp.stickpick.activity.HomeActivity;
 import com.example.hp.stickpick.activity.NoticeBoardActivity;
 import com.example.hp.stickpick.activity.SplashActivity;
 import com.example.hp.stickpick.bean.ReferenceWrapper;
+import com.example.hp.stickpick.bean.UserBean;
 import com.example.hp.stickpick.utils.ParameterConstants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,7 +48,7 @@ public class NotificationService extends Service {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        collectPhoneNumbers((Map<String, Object>) dataSnapshot.getValue());
+                        collectPhoneNumbers((Map<String, Object>) dataSnapshot.getValue(), dataSnapshot);
                     }
 
                     @Override
@@ -58,31 +60,26 @@ public class NotificationService extends Service {
         return START_STICKY;
     }
 
-    private void collectPhoneNumbers(Map<String, Object> users) {
-
+    private void collectPhoneNumbers(Map<String, Object> users, final DataSnapshot dataSnapshot) {
+        final int iteratorCount = (int) dataSnapshot.getChildrenCount();
+        notificationDatabase.updateValueEvents("" + iteratorCount);
         String events = new NotificationDatabase(getApplicationContext()).getEvents();
         String[] eventsAr = events.split(",");
         if (Integer.valueOf(eventsAr[1]) - Integer.valueOf(eventsAr[0]) > 0) {
-            try {
-                if (ReferenceWrapper.getRefrenceWrapper(getApplicationContext()).getUserBean().getMobile().equals(notificationDatabase.getMob())){
-
-                }
-            }catch (NullPointerException e){
-
-            }
             sendNotification("" + (Integer.valueOf(eventsAr[1]) - Integer.valueOf(eventsAr[0])) + " Notice Posted");
-        } else {
-            Toast.makeText(this, "no new notice", Toast.LENGTH_SHORT).show();
+        } else if (Integer.valueOf(eventsAr[1]) - Integer.valueOf(eventsAr[0]) < 0) {
+            notificationDatabase.updateSingleEvents("" + iteratorCount);
+            Toast.makeText(this, "notice has changed or deleted", Toast.LENGTH_SHORT).show();
 //            sendNotification("notice cleared");
         }
     }
 
     private void sendNotification(String body) {
         Intent intent;
-        if (HomeActivity.notificationHomeHandler){
+        if (HomeActivity.notificationHomeHandler) {
             intent = new Intent(this, NoticeBoardActivity.class);
-        }else {
-            HomeActivity.notificationNoticeHandler=true;
+        } else {
+            HomeActivity.notificationNoticeHandler = true;
             intent = new Intent(this, SplashActivity.class);
 
         }

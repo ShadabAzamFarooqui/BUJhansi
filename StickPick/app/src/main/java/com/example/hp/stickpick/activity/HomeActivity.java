@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Location;
@@ -152,10 +153,15 @@ public class HomeActivity extends AppCompatActivity
         if (notificationNoticeHandler){
             startActivity(new Intent(this,NoticeBoardActivity.class));
         }
-        if (!database.isTableExist()) {
+        try{
+            if (!database.isTableExist()) {
+                new NotificationDatabase(getApplicationContext()).insertEvents(ReferenceWrapper.getRefrenceWrapper(getApplicationContext()).getUserBean().getMobile(), "0", "0");
+            }
+        }catch (SQLiteException e){
             database.createTable(null);
             new NotificationDatabase(getApplicationContext()).insertEvents(ReferenceWrapper.getRefrenceWrapper(getApplicationContext()).getUserBean().getMobile(), "0", "0");
         }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         final LinearLayout notificationLayout = (LinearLayout) findViewById(R.id.notification_layout);
         setSupportActionBar(toolbar);
