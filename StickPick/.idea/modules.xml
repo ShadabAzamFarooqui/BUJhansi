@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StickPick.iml" filepath="$PROJECT_DIR$/StickPick.iml" />
-      <module fileurl="file://C:\Users\BerylSystems\Desktop\BUJhansi\StickPick\StickPick.iml" filepath="C:\Users\BerylSystems\Desktop\BUJhansi\StickPick\StickPick.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\BerylSystems\Desktop\BUJhansi\StickPick\app\app.iml" filepath="C:\Users\BerylSystems\Desktop\BUJhansi\StickPick\app\app.iml" />
     </modules>
   </component>
 </project>

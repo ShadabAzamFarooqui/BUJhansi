@@ -1,6 +1,7 @@
 package com.example.hp.stickpick.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -248,4 +249,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+        finish();
+    }
 }
