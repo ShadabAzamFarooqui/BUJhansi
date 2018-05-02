@@ -49,7 +49,7 @@ public class MCA5 extends Fragment {
 
     ListView listView;
     Button summit;
-    CheckBox mainCheckBox;
+    static CheckBox mainCheckBox;
     List listCourseSemester;
     MyAdapter myAdapter;
 
@@ -98,11 +98,11 @@ public class MCA5 extends Fragment {
         summit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!ReferenceWrapper.isNetworkAvailable(getActivity())){
+                if (!ReferenceWrapper.isNetworkAvailable(getActivity())) {
                     Toast.makeText(getActivity(), "Please check youe internet connection", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (MCA1.MyAdapter.map==null){
+                if (MCA1.MyAdapter.map == null) {
                     Toast.makeText(getActivity(), "Can't submit the attendance before loading the data", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -134,7 +134,6 @@ public class MCA5 extends Fragment {
                         }
                     }
                 });
-
 
 
             }
@@ -309,7 +308,6 @@ public class MCA5 extends Fragment {
                 map.put(0, getChecked);
                 holder.checkbox.setChecked(false);
             }
-
             holder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                 @Override
@@ -319,10 +317,32 @@ public class MCA5 extends Fragment {
                         boolean getChecked[] = map.get(0);
                         getChecked[mChildPosition] = isChecked;
                         map.put(0, getChecked);
+                        boolean[] ar = map.get(0);
+                        int a=0;
+                        for (int i = 0; i < ar.length; i++) {
+                            if (ar[i]) {
+                             a=a+1;
+                            }
+                            if (a==ar.length){
+                                if (!mainCheckBox.isChecked()) {
+                                    mainCheckBox.setChecked(true);
+                                    map.put(0,ar);
+                                }
+                            }
+                        }
                     } else {
                         boolean getChecked[] = map.get(0);
                         getChecked[mChildPosition] = isChecked;
                         map.put(0, getChecked);
+                        boolean[] ar = map.get(0);
+                        for (int i = 0; i < ar.length; i++) {
+                            if (!ar[i]) {
+                                if (mainCheckBox.isChecked()) {
+                                    mainCheckBox.setChecked(false);
+                                    map.put(0,ar);
+                                }
+                            }
+                        }
 
                     }
                 }
