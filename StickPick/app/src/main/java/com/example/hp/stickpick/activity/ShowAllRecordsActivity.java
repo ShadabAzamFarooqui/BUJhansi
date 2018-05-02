@@ -60,6 +60,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
     ListView listView;
     AutoCompleteTextView autoCompleteTextView;
     int i;
+    MyAdapter myAdapter;
     int position;
     EditText mSearch;
     ArrayList<String> listName;
@@ -128,12 +129,39 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
         }
        /* if (Networking.isConnected(ShowAllRecordsActivity.this)) {*/
         listView = (ListView) findViewById(R.id.listView);
-        mSearch= (EditText) findViewById(R.id.search);
+        mSearch = (EditText) findViewById(R.id.search);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Shaking hands with server");
         progressDialog.show();
         getAllRecord();
+
+        mSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (HomeActivity.boolCourseSem) {
+                    myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listCourseSemester);
+                    listView.setAdapter(myAdapter);
+                } else {
+                    myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listBean);
+                    listView.setAdapter(myAdapter);
+                }
+                myAdapter.getFilter().filter(s.toString());
+            }
+        });
+
+
+
 
         /*} else {
             Toast.makeText(ShowAllRecordsActivity.this, "Please check you internet connection", Toast.LENGTH_SHORT).show();
@@ -296,23 +324,6 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             autoCompleteTextView(autoCompleteList);
         }
 
-        mSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-//                MyAdapter myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listBean);
-//                myAdapter.getFilter().filter(s.toString());
-            }
-        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -373,12 +384,13 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
     }
 
 
-    class MyAdapter extends BaseAdapter implements Filterable{
+    class MyAdapter extends BaseAdapter implements Filterable {
 
         Context context;
 
 
         List<ListBean> listBean;
+        List<ListBean> mFilteredList;
 
 
         MyAdapter(Context context, List listBean) {
@@ -472,7 +484,35 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
 
         @Override
         public Filter getFilter() {
-            return null;
+            return new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence charSequence) {
+                    String charString = charSequence.toString();
+                    if (charString.isEmpty()) {
+                        mFilteredList = listBean;
+                    } else {
+                        ArrayList<ListBean> filteredList = new ArrayList<>();
+                        for (ListBean androidVersion : listBean) {
+                            if (androidVersion.getName().toLowerCase().contains(charString)||androidVersion.getMobile().contains(charString)) {
+                                filteredList.add(androidVersion);
+                            }
+                        }
+                        mFilteredList = filteredList;
+                    }
+
+                    FilterResults filterResults = new FilterResults();
+                    filterResults.values = mFilteredList;
+                    return filterResults;
+                }
+
+                @Override
+                protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                    mFilteredList = (ArrayList<ListBean>) filterResults.values;
+                    MyAdapter myAdapter=new MyAdapter(MyAdapter.this.context,mFilteredList);
+                    listView.setAdapter(myAdapter);
+//                    notifyDataSetChanged();
+                }
+            };
         }
     }
 
@@ -482,15 +522,6 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
         TextView textViewimageDetail;
         LinearLayout linearEmail, linearPass;
     }
-
-
-
-
-
-
-
-
-
 
     void a(final List<ListBean> list, int i) {
 
@@ -559,7 +590,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                                 databaseReference.child(ParameterConstants.PROFILE).child(list.get(ShowAllRecordsActivity.this.i).getMobile()).removeValue();
                                 Intent intent = new Intent(ShowAllRecordsActivity.this, ShowAllRecordsActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                if (HomeActivity.boolCourseSem){
+                                if (HomeActivity.boolCourseSem) {
                                     intent.putExtra("cs", cs);
                                 }
                                 startActivity(intent);
