@@ -493,7 +493,10 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
                     } else {
                         ArrayList<ListBean> filteredList = new ArrayList<>();
                         for (ListBean androidVersion : listBean) {
-                            if (androidVersion.getName().toLowerCase().contains(charString)||androidVersion.getMobile().contains(charString)) {
+                            if (androidVersion.getName().toLowerCase().startsWith(charString)||androidVersion.getMobile().startsWith(charString)){
+                                filteredList.add(androidVersion);
+                            }
+                            else if (androidVersion.getName().toLowerCase().contains(charString)||androidVersion.getMobile().contains(charString)) {
                                 filteredList.add(androidVersion);
                             }
                         }
