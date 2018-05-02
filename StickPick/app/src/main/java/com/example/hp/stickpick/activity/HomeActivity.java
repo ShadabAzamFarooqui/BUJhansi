@@ -504,7 +504,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        hometitle.startAnimation(animBounce);
+//        hometitle.startAnimation(animBounce);
         userBean = referenceWrapper.getUserBean();
         if (userBean != null && navigationView != null) {
             View headerView = navigationView.getHeaderView(0);
@@ -1249,7 +1249,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onRestart() {
         super.onRestart();
 
-        hometitle.startAnimation(animBounce);
+//        hometitle.startAnimation(animBounce);
         UserBean userBean = referenceWrapper.getUserBean();
         if (userBean == null) {
             DatabaseHandler databaseHandler = new DatabaseHandler(HomeActivity.this);

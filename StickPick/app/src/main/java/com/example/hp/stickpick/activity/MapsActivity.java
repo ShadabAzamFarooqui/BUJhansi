@@ -3,6 +3,7 @@ package com.example.hp.stickpick.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -41,6 +43,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
     ProgressDialog pDialog;
+
+    Double firstLatitude;
+    Double firstLongitude;
+    int firstPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mCurrLocationMarker.remove();
         }
 
-
+//        Toast.makeText(this, ""+location.getLongitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
         //Place current location marker
         latitude = location.getLatitude();
         longitude = location.getLongitude();
@@ -160,16 +166,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(18));
-        Toast.makeText(this, "your current position", Toast.LENGTH_LONG).show();
-
-
+//        Toast.makeText(this, "your current position", Toast.LENGTH_LONG).show();
         Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f", latitude, longitude));
 
         //stop location updates
         if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
             Log.d("onLocationChanged", "Removing Location Updates");
         }
+
+        if (firstPosition==0){
+            firstLatitude=location.getLatitude();
+            firstLongitude=location.getLongitude();
+            firstPosition++;
+        }
+        mMap.addPolyline(new PolylineOptions()
+                .add(new LatLng(firstLatitude, firstLongitude), latLng)
+                .width(1)
+                .color(Color.RED));
         Log.d("onLocationChanged", "Exit");
         hidePDialog();
 
