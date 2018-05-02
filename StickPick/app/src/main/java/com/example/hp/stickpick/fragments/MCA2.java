@@ -82,7 +82,7 @@ public class MCA2 extends Fragment {
                     }
                     MyAdapter.map.put(0, bArray);
                     myAdapter.notifyDataSetChanged();
-                    listView.setAdapter(myAdapter);
+//                    listView.setAdapter(myAdapter);
                 } else {
                     MyAdapter.map.clear();
                     boolean[] bArray = new boolean[listCourseSemester.size()];
@@ -91,7 +91,7 @@ public class MCA2 extends Fragment {
                     }
                     MyAdapter.map.put(0, bArray);
                     myAdapter.notifyDataSetChanged();
-                    listView.setAdapter(myAdapter);
+//                    listView.setAdapter(myAdapter);
                 }
             }
         });
