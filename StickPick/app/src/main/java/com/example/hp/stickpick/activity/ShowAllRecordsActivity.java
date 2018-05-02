@@ -13,6 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,6 +27,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -57,6 +61,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     int i;
     int position;
+    EditText mSearch;
     ArrayList<String> listName;
     ArrayList<String> listMobile;
     ArrayList<String> listEmail;
@@ -123,6 +128,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
         }
        /* if (Networking.isConnected(ShowAllRecordsActivity.this)) {*/
         listView = (ListView) findViewById(R.id.listView);
+        mSearch= (EditText) findViewById(R.id.search);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Shaking hands with server");
@@ -268,9 +274,9 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             MyAdapter myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listCourseSemester);
             listView.setAdapter(myAdapter);
 
-            List autoCompleteList=new ArrayList();
-            for (int i=0;i<listCourseSemester.size();i++){
-                autoCompleteList.add(listCourseSemester.get(i).getName()+"\n"+listCourseSemester.get(i).getMobile());
+            List autoCompleteList = new ArrayList();
+            for (int i = 0; i < listCourseSemester.size(); i++) {
+                autoCompleteList.add(listCourseSemester.get(i).getName() + "\n" + listCourseSemester.get(i).getMobile());
             }
             autoCompleteTextView(autoCompleteList);
         } else {
@@ -283,21 +289,38 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             MyAdapter myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listBean);
             listView.setAdapter(myAdapter);
 
-            List autoCompleteList=new ArrayList();
-            for (int i=0;i<listBean.size();i++){
-                autoCompleteList.add(listBean.get(i).getName()+"\n"+listBean.get(i).getMobile());
+            List autoCompleteList = new ArrayList();
+            for (int i = 0; i < listBean.size(); i++) {
+                autoCompleteList.add(listBean.get(i).getName() + "\n" + listBean.get(i).getMobile());
             }
             autoCompleteTextView(autoCompleteList);
         }
 
+        mSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                MyAdapter myAdapter = new MyAdapter(ShowAllRecordsActivity.this, listBean);
+//                myAdapter.getFilter().filter(s.toString());
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!HomeActivity.boolCourseSem) {
-                    a(listBean);
+                    a(listBean, i);
                 } else {
-                    a(listCourseSemester);
+                    a(listCourseSemester, i);
                 }
             }
         });
@@ -350,7 +373,7 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
     }
 
 
-    class MyAdapter extends BaseAdapter {
+    class MyAdapter extends BaseAdapter implements Filterable{
 
         Context context;
 
@@ -447,6 +470,10 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
             return 0;
         }
 
+        @Override
+        public Filter getFilter() {
+            return null;
+        }
     }
 
     static class ViewHolder {
@@ -456,213 +483,224 @@ public class ShowAllRecordsActivity extends AppCompatActivity {
         LinearLayout linearEmail, linearPass;
     }
 
-    void a(final List<ListBean> list){
-        {
-            ShowAllRecordsActivity.this.i = i;
-            final CharSequence[] items = {"Call", "Sms", "Email", "Remove"};
-            ShowAllRecordsActivity.this.i = i;
-            AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
-            builder.setItems(items, new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int item) {
-                    if (item == 0) {
-                        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + list.get(ShowAllRecordsActivity.this.i).getMobile().toString()));
-                        callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                       try {
-                           ShowAllRecordsActivity.this.startActivity(callIntent);
-                       }catch (Exception e){
-                           Toast.makeText(ShowAllRecordsActivity.this, "Please give permission", Toast.LENGTH_SHORT).show();
-                       }
-                    } else if (item == 1) {
-
-                        final Dialog openDialog = new Dialog(ShowAllRecordsActivity.this);
-                        openDialog.setContentView(R.layout.message_dailog);
-                        openDialog.setTitle("Enter message");
-                        final EditText msgEdt = (EditText) openDialog.findViewById(R.id.msgEdt);
-                        Button msgBtn = (Button) openDialog.findViewById(R.id.msgBtn);
-                        final String mobileNumber = list.get(ShowAllRecordsActivity.this.i).getMobile().toString();
-                        msgBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if (msgEdt.getText().toString().trim().isEmpty()) {
-                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                            "Please write something", Toast.LENGTH_SHORT);
-                                    toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-                                    toast.show();
-
-                                    return;
-                                }
-                                SmsManager smsManager = SmsManager.getDefault();
-                                try {
-                                    smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhansi=\n" + msgEdt.getText().toString(), null, null);
-                                }catch (Exception e){
-                                    Toast.makeText(ShowAllRecordsActivity.this, "Please give permission", Toast.LENGTH_SHORT).show();
-                                }
-                                openDialog.dismiss();
-                            }
-                        });
-                        openDialog.show();
 
 
-                    } else if (item == 2) {
-                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                "mailto", list.get(position).getEmail().toString(), null));
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");
-                        startActivity(Intent.createChooser(emailIntent, null));
-                    } else if (item == 3) {
-                        android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ShowAllRecordsActivity.this);
-                        alertDialog.setMessage("Are you sure?");
-                        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                UserBean userBean = ReferenceWrapper.getRefrenceWrapper(ShowAllRecordsActivity.this).getUserBean();
-                                if (userBean.getCourse().equals("TEACHER")) {
-                                    ProgressDialog progressDialog2 = new ProgressDialog(ShowAllRecordsActivity.this);
-                                    progressDialog2.setMessage("Removing...");
-                                    progressDialog2.show();
-                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                    databaseReference = database.getReference(ParameterConstants.USERS);
-                                    databaseReference.child(ParameterConstants.PROFILE).child(list.get(ShowAllRecordsActivity.this.i).getMobile()).removeValue();
-                                    Intent intent = new Intent(ShowAllRecordsActivity.this, ShowAllRecordsActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                    startActivity(intent);
-                                    finish();
-                                    progressDialog2.dismiss();
-                                } else {
-                                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
-                                    dialogBuilder.setMessage("Only teacher can delete the record");
-                                    dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            dialog.dismiss();
-                                        }
-                                    });
 
-                                    AlertDialog b = dialogBuilder.create();
-                                    b.show();
-                                }
 
-                            }
-                        });
-                        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        alertDialog.show();
+
+
+
+
+
+    void a(final List<ListBean> list, int i) {
+
+        ShowAllRecordsActivity.this.i = i;
+        final CharSequence[] items = {"Call", "Sms", "Email", "Remove"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int item) {
+                if (item == 0) {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + list.get(ShowAllRecordsActivity.this.i).getMobile().toString()));
+                    callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    try {
+                        ShowAllRecordsActivity.this.startActivity(callIntent);
+                    } catch (Exception e) {
+                        Toast.makeText(ShowAllRecordsActivity.this, "Please give permission", Toast.LENGTH_SHORT).show();
                     }
+                } else if (item == 1) {
+
+                    final Dialog openDialog = new Dialog(ShowAllRecordsActivity.this);
+                    openDialog.setContentView(R.layout.message_dailog);
+                    openDialog.setTitle("Enter message");
+                    final EditText msgEdt = (EditText) openDialog.findViewById(R.id.msgEdt);
+                    Button msgBtn = (Button) openDialog.findViewById(R.id.msgBtn);
+                    final String mobileNumber = list.get(ShowAllRecordsActivity.this.i).getMobile().toString();
+                    msgBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (msgEdt.getText().toString().trim().isEmpty()) {
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "Please write something", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                toast.show();
+
+                                return;
+                            }
+                            SmsManager smsManager = SmsManager.getDefault();
+                            try {
+                                smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhansi=\n" + msgEdt.getText().toString(), null, null);
+                            } catch (Exception e) {
+                                Toast.makeText(ShowAllRecordsActivity.this, "Please give permission", Toast.LENGTH_SHORT).show();
+                            }
+                            openDialog.dismiss();
+                        }
+                    });
+                    openDialog.show();
+
+
+                } else if (item == 2) {
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                            "mailto", list.get(position).getEmail().toString(), null));
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");
+                    startActivity(Intent.createChooser(emailIntent, null));
+                } else if (item == 3) {
+                    android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ShowAllRecordsActivity.this);
+                    alertDialog.setMessage("Are you sure?");
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            UserBean userBean = ReferenceWrapper.getRefrenceWrapper(ShowAllRecordsActivity.this).getUserBean();
+                            if (userBean.getCourse().equals("TEACHER")) {
+                                ProgressDialog progressDialog2 = new ProgressDialog(ShowAllRecordsActivity.this);
+                                progressDialog2.setMessage("Removing...");
+                                progressDialog2.show();
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                databaseReference = database.getReference(ParameterConstants.USERS);
+                                databaseReference.child(ParameterConstants.PROFILE).child(list.get(ShowAllRecordsActivity.this.i).getMobile()).removeValue();
+                                Intent intent = new Intent(ShowAllRecordsActivity.this, ShowAllRecordsActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                if (HomeActivity.boolCourseSem){
+                                    intent.putExtra("cs", cs);
+                                }
+                                startActivity(intent);
+
+                                finish();
+                                progressDialog2.dismiss();
+                            } else {
+                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
+                                dialogBuilder.setMessage("Only teacher can delete the record");
+                                dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                AlertDialog b = dialogBuilder.create();
+                                b.show();
+                            }
+
+                        }
+                    });
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    alertDialog.show();
                 }
+            }
 
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
-        }
     }
 
-    void b(){
 
-            {
-                ShowAllRecordsActivity.this.i = i;
-                final CharSequence[] items = {"Call", "Sms", "Email", "Remove"};
-                ShowAllRecordsActivity.this.i = i;
-                AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int item) {
-                        if (item == 0) {
-                            Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + listCourseSemester.get(ShowAllRecordsActivity.this.i).getMobile().toString()));
-                            callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            try {
-                                ShowAllRecordsActivity.this.startActivity(callIntent);
-
-                            }catch (Exception e){
-                                Toast.makeText(ShowAllRecordsActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
-                        } else if (item == 1) {
-                            final Dialog openDialog = new Dialog(ShowAllRecordsActivity.this);
-                            openDialog.setContentView(R.layout.message_dailog);
-                            openDialog.setTitle("Enter message");
-                            final EditText msgEdt = (EditText) openDialog.findViewById(R.id.msgEdt);
-                            Button msgBtn = (Button) openDialog.findViewById(R.id.msgBtn);
-                            final String mobileNumber = listCourseSemester.get(ShowAllRecordsActivity.this.i).getMobile().toString();
-                            msgBtn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    if (msgEdt.getText().toString().trim().isEmpty()) {
-                                        Toast toast = Toast.makeText(getApplicationContext(),
-                                                "Please write something", Toast.LENGTH_SHORT);
-                                        toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-                                        toast.show();
-
-                                        return;
-                                    }
-                                    SmsManager smsManager = SmsManager.getDefault();
-                                    try {
-                                        smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhansi=\n" + msgEdt.getText().toString(), null, null);
-
-                                    }catch (Exception e){
-                                        Toast.makeText(ShowAllRecordsActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                    openDialog.dismiss();
-                                }
-                            });
-                            openDialog.show();
+    void b() {
 
 
-                        } else if (item == 2) {
-                            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                    "mailto", listCourseSemester.get(ShowAllRecordsActivity.this.i).getEmail().toString(), null));
-                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");
-                            startActivity(Intent.createChooser(emailIntent, null));
-                        } else if (item == 3) {
-                            android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ShowAllRecordsActivity.this);
-                            alertDialog.setMessage("Are you sure?");
-                            alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    UserBean userBean = ReferenceWrapper.getRefrenceWrapper(ShowAllRecordsActivity.this).getUserBean();
-                                    if (userBean.getCourse().equals("TEACHER")) {
-                                        ProgressDialog progressDialog2 = new ProgressDialog(ShowAllRecordsActivity.this);
-                                        progressDialog2.setMessage("Removing...");
-                                        progressDialog2.show();
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        databaseReference = database.getReference(ParameterConstants.USERS);
+        ShowAllRecordsActivity.this.i = i;
+        final CharSequence[] items = {"Call", "Sms", "Email", "Remove"};
+        ShowAllRecordsActivity.this.i = i;
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
 
-                                        databaseReference.child(ParameterConstants.PROFILE).child(listCourseSemester.get(ShowAllRecordsActivity.this.i).getMobile()).removeValue();
-                                        Intent intent = new Intent(ShowAllRecordsActivity.this, ShowAllRecordsActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                        intent.putExtra("cs", cs);
-                                        startActivity(intent);
-                                        finish();
-                                        progressDialog2.dismiss();
-                                    } else {
-                                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
-                                        dialogBuilder.setMessage("Only teacher can delete the record");
-                                        dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int whichButton) {
-                                                dialog.dismiss();
-                                            }
-                                        });
+            public void onClick(DialogInterface dialog, int item) {
+                if (item == 0) {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + listCourseSemester.get(ShowAllRecordsActivity.this.i).getMobile().toString()));
+                    callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    try {
+                        ShowAllRecordsActivity.this.startActivity(callIntent);
 
-                                        AlertDialog b = dialogBuilder.create();
-                                        b.show();
-                                    }
-
-                                }
-                            });
-                            alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                            alertDialog.show();
-                        }
+                    } catch (Exception e) {
+                        Toast.makeText(ShowAllRecordsActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                } else if (item == 1) {
+                    final Dialog openDialog = new Dialog(ShowAllRecordsActivity.this);
+                    openDialog.setContentView(R.layout.message_dailog);
+                    openDialog.setTitle("Enter message");
+                    final EditText msgEdt = (EditText) openDialog.findViewById(R.id.msgEdt);
+                    Button msgBtn = (Button) openDialog.findViewById(R.id.msgBtn);
+                    final String mobileNumber = listCourseSemester.get(ShowAllRecordsActivity.this.i).getMobile().toString();
+                    msgBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (msgEdt.getText().toString().trim().isEmpty()) {
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "Please write something", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                toast.show();
+
+                                return;
+                            }
+                            SmsManager smsManager = SmsManager.getDefault();
+                            try {
+                                smsManager.sendTextMessage(mobileNumber, null, "B.U.Jhansi=\n" + msgEdt.getText().toString(), null, null);
+
+                            } catch (Exception e) {
+                                Toast.makeText(ShowAllRecordsActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                            openDialog.dismiss();
+                        }
+                    });
+                    openDialog.show();
 
 
-        }
+                } else if (item == 2) {
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                            "mailto", listCourseSemester.get(ShowAllRecordsActivity.this.i).getEmail().toString(), null));
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "B.U.Jhansi");
+                    startActivity(Intent.createChooser(emailIntent, null));
+                } else if (item == 3) {
+                    android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(ShowAllRecordsActivity.this);
+                    alertDialog.setMessage("Are you sure?");
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            UserBean userBean = ReferenceWrapper.getRefrenceWrapper(ShowAllRecordsActivity.this).getUserBean();
+                            if (userBean.getCourse().equals("TEACHER")) {
+                                ProgressDialog progressDialog2 = new ProgressDialog(ShowAllRecordsActivity.this);
+                                progressDialog2.setMessage("Removing...");
+                                progressDialog2.show();
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                databaseReference = database.getReference(ParameterConstants.USERS);
+
+                                databaseReference.child(ParameterConstants.PROFILE).child(listCourseSemester.get(ShowAllRecordsActivity.this.i).getMobile()).removeValue();
+                                Intent intent = new Intent(ShowAllRecordsActivity.this, ShowAllRecordsActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                intent.putExtra("cs", cs);
+                                startActivity(intent);
+                                finish();
+                                progressDialog2.dismiss();
+                            } else {
+                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ShowAllRecordsActivity.this);
+                                dialogBuilder.setMessage("Only teacher can delete the record");
+                                dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                AlertDialog b = dialogBuilder.create();
+                                b.show();
+                            }
+
+                        }
+                    });
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    alertDialog.show();
+                }
+            }
+
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 }
