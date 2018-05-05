@@ -47,6 +47,7 @@ import com.example.hp.stickpick.android_retrofit.api.ApiClient;
 import com.example.hp.stickpick.android_retrofit.network.request.GetRequest;
 import com.example.hp.stickpick.notification.NotificationDatabase;
 import com.example.hp.stickpick.notification.NotificationService;
+import com.example.hp.stickpick.speedo_meter.SpeedoMeterActivity;
 import com.example.hp.stickpick.utils.Conversion;
 import com.example.hp.stickpick.utils.Networking;
 import com.example.hp.stickpick.bean.NoticeBean;
@@ -150,6 +151,13 @@ public class HomeActivity extends AppCompatActivity
         startService(new Intent(HomeActivity.this, NotificationService.class));
         NotificationDatabase database = new NotificationDatabase(getApplicationContext());
         notificationHomeHandler = true;
+
+        findViewById(R.id.speedometer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SpeedoMeterActivity.class));
+            }
+        });
         if (notificationNoticeHandler){
             startActivity(new Intent(this,NoticeBoardActivity.class));
         }

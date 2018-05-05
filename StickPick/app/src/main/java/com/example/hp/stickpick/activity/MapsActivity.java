@@ -71,7 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         pDialog.show();
 
     }
@@ -182,7 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         mMap.addPolyline(new PolylineOptions()
                 .add(new LatLng(firstLatitude, firstLongitude), latLng)
-                .width(1)
+                .width(5)
                 .color(Color.RED));
         Log.d("onLocationChanged", "Exit");
         hidePDialog();

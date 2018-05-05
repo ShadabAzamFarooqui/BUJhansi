@@ -74,6 +74,19 @@
             app:layout_anchor="@id/app_bar" />
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/speedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/show_attendance_fab"
+            android:layout_toStartOf="@+id/show_attendance_fab"
+            android:src="@drawable/speed_meter"
+            android:visibility="visible"
+            app:layout_anchor="@id/app_bar" />
+
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/show_attendance_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,9 +95,11 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/attendance_fab"
             android:layout_toStartOf="@+id/attendance_fab"
-            android:src="@drawable/attachment"
+            android:src="@drawable/attendance"
             android:visibility="visible"
             app:layout_anchor="@id/app_bar" />
+
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/find_nearest_fab"
